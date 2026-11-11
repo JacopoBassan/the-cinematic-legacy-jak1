@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "game": "jak1",
+  "sourceLayout": "per-game",
+  "templateRepository": "OpenGOAL-Mods/OG-Mod-Base",
+  "templateCommit": "2c4ee857a2efee60bf8c7c27d8a4c548085c8b4d",
+  "templateFiles": "Release metadata script, schema and ISC licence; unused engine source is not part of this mod repository.",
+  "separationModelAlgorithmsChanged": false,
+  "builderFiles": {
+    "CREDITS.txt": "d85708bd96493a8aa7438eaa1d6b0515d7e1859e71b30e766978ca415cebacda",
+    "LAUNCHER-INSTALL-MAC.txt": "ff7da5791720d7cbd103cc0eea213209596d5c548e6a88812eb8b512c4ae01df",
+    "LAUNCHER-INSTALL.txt": "e2416926ea0b468be94141d030c46d026ce7f33c67968d3e475d50bc4184783b",
+    "LICENSE": "aa99318a1317ae3786dac2c9cf6e9db801d6dd833ccd78aa33b8bd7211bfa85f",
+    "LauncherExtractor.cs": "baed2a1f3f4e6b112619943fa5dcc933dc6061f27dffa54ce0ac04f2045b3cb0",
+    "LauncherExtractor.sh": "a575a0262830f9e41eacc4a76c1165b8b21f85f987956380ebc0412b79a99a3a",
+    "README.md": "dde474b109ca646c5a3e5b91bd7256f01756b0abc602e03622a3462ae047f9df",
+    "artwork/jak1.png": "27a8ad109fa252af7471ddcfe8f041d42e90ff9ff0987d9af84f1b66b4210464",
+    "game-config.json": "d296314ffe339d5714eda1434cd014a0cc8a511ac8682ddec79ed43bf9155c96",
+    "game-configs/jak1.json": "d296314ffe339d5714eda1434cd014a0cc8a511ac8682ddec79ed43bf9155c96",
+    "game_config.py": "ea4169d4986352f9168cc7603f80bcf3bc0e278a59e2bd948aff737b33226304",
+    "install.py": "d1dc91400994fc07be87e8a0448327ae24215571f1f4dd758a4bc4f45fe5264e",
+    "jak1/build_faces.py": "a41b8ab3a4caced8ebcdba83d410af210f81d8bcc87025bbb26ed203bb471570",
+    "jak1/build_materials.py": "6a923ab934e48d1a69d4b1cb9072f0f4e764e1523a826bd5698e97f2156d0ccf",
+    "jak1/build_prototypes.py": "5e33f411cb42cf98da9ca41015f947de219ad7fc52e5a34a55c3e45d4d823e10",
+    "jak1/build_release.py": "becb1e7cba4e5ce94c5840d47d3c3a90675855318ef9d1bf9f0c8d4b5cfacc88",
+    "jak1/build_textures.py": "282fff2f56c2fd86d85cef515460135aad1f74e6dcdd555bb8e010bba1a7d44d",
+    "jak1/compatibility.json": "b01141f6561ade7769818576e8031882221051e5a4933e0f3ed98140baf3d8e5",
+    "jak1/eye_alignment.py": "fa8ccfbaf9d48f74cb3d00d78fb6f5bc8cf684668488f6ae537f45cf59ae73ac",
+    "jak1/fit_faces.py": "caca9acfafd6e5e3f55ba8d97293d4eeb31bcb8643576c77ba0994c7d90b6145",
+    "jak1/jak1_paths.py": "78f97414285122e6f16ae1f724fc7479d83d7e7af53f8c7857bcffd1546815f4",
+    "jak1/keira_feet.py": "8c5e742e1626d0187d715d9814e0d18811b5d7a35a59429badb93d1c522804e7",
+    "jak1/native_face_rig.py": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
+    "jak1/native_io.py": "a04fb0f733b03d142d3661880845074d0f5775c1a7c15f36c6588c3ce762ed50",
+    "jak1/native_jaw.py": "add76e7a9eea918eb82917702b755f125f10f59236144abc78ef6c25b19877da",
+    "jak1/patch_runtime.py": "46dce8d4eac9cffdadf5873676db00604e5cb6a0c9edb88e249838dd03d943fb",
+    "jak1/refit_keira_cuffs.py": "f23d3d00e782fed8e817e3177706d47364f5029db72401bb71bd67993d2ec36f",
+    "jak1/rig_validation.py": "e91778ffb3f88e7c9dbf019269e221a5ba9578f588b7fafaeadbaf831a9cd5ce",
+    "jak1/verify_import.py": "4776d45f2c45047d66e09e000892590eaaf97ac18741b80b3d065e919ff5b767",
+    "launcher_install.py": "025555ba8edd34ac68271eb74a64fd8d954b21aa78364e1432072ebd5608096d",
+    "licenses/OpenGOAL-ISC.txt": "64983c21481eeab85e9df874e4b452bf6df9005bb5f422fb154705a9931ece56",
+    "package_launcher.py": "7c4c6d1b62423acf05fcc5bb9d4dc5926041fadda5e336314700baea5c182ce3",
+    "package_macos.py": "e3beeb99981b8ee3da85dc394edf241a95dc394e8c1ac8528dcb4eeb107d9a80",
+    "package_source.py": "63f051d2b8e090b7b3df15555128ee7292b46186af797a81a87617f3b3ac659b",
+    "platform_tools.py": "011389537af6a491f20b514aa739161500aa8cc33eccb16461571c8232a33911",
+    "platforms/macos-arm64.json": "27f8121ddc507ad553b34f3dc5271c5308223f16912582e73843b4c62b3b6b71",
+    "platforms/windows-x64.json": "94f22c805a8b6eb16f1ba1430ac49c4d30d8a224e1c169731d1552966d4acefa",
+    "requirements.txt": "2021454246309035e646111c85320a015f5e1061a0c44e76edc9534512256b2d",
+    "retarget_glb.py": "7e9799fa6c36d8fbbcc1ee95fb9401224a7a0c0c959b057b75bb17ad3bc259ab",
+    "runtime_utils.py": "4aa4428c983fc27bf7708b11ec61941525a45b26ed4dbe3fd1b53a59e3788105",
+    "source-files.json": "1b3ba097f3d296ff4cc3e1dbe0722563a98f8c28cbe8fa76d7bc8ec6305e9873",
+    "stages/dax_effects.py": "572b8dd9cd287080555b8900b590ec09b07b8cfb53bc25a12024c1bcd93ee58f",
+    "stages/fix_faces.py": "3c82be9f9fc6d4f8e2a4e78d9c6034391524871cacd50c4f8d556971fe1c2755",
+    "stages/fr3_models.py": "caa9b188a91854fd6f7e4fd093a0526761ec0f5bf48e2b35bc7c4023f288b8ef",
+    "stages/inspect_faces.py": "036523031b4bab2b75901ecfd1758a3a2908432439dee64454ef5161c16ac187",
+    "stages/inspect_transformations.py": "e96f5d9fb4383b310a872649e2678803c0da9f24b9590d8ccc3117bee8e83ffd"
+  },
+  "artwork": {
+    "sha256": "27a8ad109fa252af7471ddcfe8f041d42e90ff9ff0987d9af84f1b66b4210464",
+    "dimensions": [
+      1024,
+      576
+    ],
+    "sharedSourceCrop": [
+      700,
+      100,
+      1209,
+      676
+    ],
+    "captureHashes": {
+      "original": "7f5d32dc3e0dd59d45e855c9727f561d77430d4758c5a32b9b333f33d89de8e2",
+      "cinematic": "d4019dfdac625721944abb90a93dad4cb1a0ecb2dcd21637b8c3b343de1b1a94"
+    },
+    "panelsMatchSourcePixelsExactly": true,
+    "method": "Direct screenshot crops and placement; lossless PNG",
+    "imageGeneration": false,
+    "resizing": false,
+    "colourChanges": false,
+    "captureBuild": {
+      "openGoalVersion": "v0.3.9",
+      "platform": "windows-x64",
+      "rigSourceSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
+      "jakPrototypeSha256": "53d9a448ae32fe110266cac817b73c5ff23bdeacae093a1ec72e8cf895fc8754",
+      "cinematicGameFr3Sha256": "7637993babdb82ed57a589e128a072c1eadc4fe762f875a5ca78149af52d0cbf",
+      "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34"
+    }
+  },
+  "windowsMouthFix": {
+    "commit": "e5fa25c5144433cd005c40608c7b4d2f0585164e",
+    "fileSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c"
+  }
+}

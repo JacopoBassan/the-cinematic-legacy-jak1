@@ -1,0 +1,32 @@
+{
+  "platform": "macos-arm64",
+  "openGoalVersion": "v0.3.9",
+  "tools": {
+    "extractor": "02010ae4c2f93dec74b83d03804acc837d56164ebbc0ca3d315498d0d1834534",
+    "goalc": "2be27d36f794db4b9b6fc5aa7443c65b2ae976d7e4eedca58ed3445b842cc0bc",
+    "gk": "b006df0159c7eb2f91f2b57df9b204c495cd084f33cb8cb1619ff54f1a090621"
+  },
+  "gameProfiles": {
+    "jak1": {
+      "SCES-50361": {
+        "nativeBaseInputs": {
+          "out/jak1/iso/GAME.CGO": "ff612ac0dbc23825f3d059447a8a8b3ad3047656f4697f7a02f4f7d2051ac350"
+        }
+      },
+      "SCUS-97124": {
+        "nativeBaseInputs": {
+          "out/jak1/iso/GAME.CGO": "aec3ecd4060687a16234118bc5c93160327e04aedbad4472c35a62bbb5728781"
+        }
+      }
+    }
+  },
+  "toolArchive": {
+    "url": "https://github.com/open-goal/jak-project/releases/download/v0.3.9/opengoal-macos-arm-v0.3.9.tar.gz",
+    "sha256": "613d7b2b2171fd1840c71b2928e1352ee1b5f2ec8df5a4ec76c1bfe91b926d42"
+  },
+  "pythonRuntime": {
+    "version": "3.11.18",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.11.18%2B20261026-aarch64-apple-darwin-install_only_stripped.tar.gz",
+    "sha256": "f3e1cd83a7f1d70e58b0d69102c18bd6867d2f973068dc5cbfd5822e445c66df"
+  }
+}

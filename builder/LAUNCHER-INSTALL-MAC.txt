@@ -1,0 +1,21 @@
+Jak and Daxter: The Cinematic Legacy for OpenGOAL
+Apple Silicon macOS. EU and USA Black Label discs.
+By @jacopobassan
+https://jacopobassan.me
+
+1. Install vanilla Jak and Daxter with OpenGOAL tooling v0.3.9.
+   Install vanilla Jak II in the same launcher for the cinematic donor models.
+2. Close the game. Open Features > Mods > Add from File in OpenGOAL Launcher.
+   Select the matching Mac .tar.gz archive.
+3. Wait for setup, then press Play.
+
+No separate Python installation or terminal is needed.
+Setup builds the models from your installed game files. Mods have separate saves.
+Vanilla saves stay in place and are not copied automatically.
+
+Allow space for the mod installation and temporary conversion.
+The installer reserves 2 GiB for the build. Allow 8 GiB available RAM.
+Logs remain in OpenGOAL-Cinematic-Builds beside the OpenGOAL installation.
+Successful builds remove temporary assets. Failed builds retain diagnostics.
+
+Updates and compatibility: https://github.com/JacopoBassan/the-cinematic-legacy-jak1

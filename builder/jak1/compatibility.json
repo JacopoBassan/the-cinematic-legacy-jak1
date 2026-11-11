@@ -1,0 +1,201 @@
+{
+  "game": "jak1",
+  "version": "0.3.0-rc.1",
+  "openGoalVersion": "v0.3.9",
+  "platform": "windows-x64",
+  "supportedSerials": [
+    "SCES-50361",
+    "SCUS-97124"
+  ],
+  "tools": {
+    "extractor.exe": "bc2d0718894c48f63e6bfcfe2535cf96401542286b1572aa1dbf4a90ff8f5cc9",
+    "goalc.exe": "8d877457c13349f43a8fe5a8622e319622de42e0ce4731f3b32e6a732600e28e",
+    "gk.exe": "ae8a107d6ecaaa7e83948b5c9c01fabf43a0117fd82a3305ae084114c54da45d"
+  },
+  "sourceTrees": {
+    "goal_src": {
+      "files": 4050,
+      "sha256": "fd605b6d4e8b6d789eb363769df8491f8a2fb1f8737cb1f37c2cd63dc88ca476"
+    },
+    "decompiler": {
+      "files": 83,
+      "sha256": "74d4f8ae46de5be70f7e5a67b162f849558f44cba919812dde3ef4fc49cbbc98"
+    },
+    "game": {
+      "files": 358,
+      "sha256": "6fa623babf949890351c2de732e912e185e6cdcb9df13c460f09763efa970ede"
+    },
+    "custom_assets/jak1/levels": {
+      "files": 3,
+      "sha256": "cc6713877a5fbd0ca5c8caf8450221bb91f0df65625c8ee3054be6e637900677"
+    },
+    "custom_assets/jak1/models": {
+      "files": 1,
+      "sha256": "98058a2c6c76e9103dd8e23efb600d9653838ac138badc048c074d8d2e8c2180"
+    }
+  },
+  "minimumFreeBytes": 2147483648,
+  "minimumMemoryBytes": 8589934592,
+  "payloadPaths": [
+    "data/out/jak1/fr3/GAME.fr3",
+    "data/out/jak1/fr3/village1.fr3",
+    "data/out/jak1/iso/GAME.CGO"
+  ],
+  "regionalProfiles": {
+    "SCES-50361": {
+      "inputs": {
+        "CGO/KERNEL.CGO": "d9db1f34eab7d3067e65f0e764407f8404a9934d52a7661e44e10083ee534045",
+        "CGO/GAME.CGO": "7dfb0b767e7cdc6e2a6aa47b0647b83aa918613f3d12d50a4fff908c5e689c4a",
+        "CGO/COMMON.CGO": "61041f72a795008bed282ff0899f4a7ccceca03ebc18331aef5ff07c80513258",
+        "DGO/VI1.DGO": "14c2a62d2fd4eed903347b9802388cfe095232869075d604e3c3876d45774d49",
+        "SYSTEM.CNF": "5c7b6a7394cb32e67509ea06dc637c761dd8e288cf45de39f452246fc15db774",
+        "SCES_503.61": "ad5b47891e4fdfd95d349e81b59df48eed5fa195053c49520276f09ce54aa7ba",
+        "DGO/BEA.DGO": "8c6aee6d751b1fb04264b68845ec4ea289db936ffa9a413e2629b3657b818acb",
+        "DGO/CIT.DGO": "88d5315e4ebe2dd72aa7859dffcf2e97739639bb56391d8ce1842f1b04d45e2a",
+        "DGO/DAR.DGO": "fec406f46d0ac1fa84792ee212682f3217f50f0fd578ac01144dad59d08da12f",
+        "DGO/DEM.DGO": "99d16f810b6b8d37a84680d20cb9ce78ce9e1357e907bad828ec7ebef6ef76c2",
+        "DGO/FIN.DGO": "4c2058394998c0ba84b39c757852647cc1eefeb37569c74a465fe81ca392394f",
+        "DGO/INT.DGO": "8adb5dcb0c306b7346586a3b32f72c573384451dde8aa2d54db5edf2282e45fc",
+        "DGO/JUB.DGO": "6b6da4b6d15231f896cafc85e67115cc03d83c1f55c79084e02155066c09e904",
+        "DGO/JUN.DGO": "78acd9f50c7dcfd292ffcd34808ba33757a73aca54f14b0398726635ca175028",
+        "CGO/JUNGLE.CGO": "0ddb5df3d47bacdea425497aec62d6ba9a6c07f8f8cb3ba8ebb35195de4d0d3a",
+        "CGO/L1.CGO": "52b00d5074492b39b7a9a3c6e21f533e42ef02f7d30ceeb7f09975df8da6e9b3",
+        "DGO/FIC.DGO": "358c4d12b7cbc0bf20848493f6d7e50a0cfee3c6fddde71e7480516466e235c5",
+        "DGO/LAV.DGO": "ec990d3a855669c5199a5bd9dbc7baad105a566c4ce1ca44faf1e9d8576d1ff7",
+        "DGO/MAI.DGO": "e2fa89a972d6a48aab74c54842ba1fb20e308b7c58fe7b20a63a9916aea10fcd",
+        "CGO/MAINCAVE.CGO": "2402b3f8b537e979af34c782126d54e6da19c1629b9969a38cb2a7be7dcfd1e7",
+        "DGO/MIS.DGO": "f6984e20157733cc2f29dd12fb7b032d2db88ddee215a4e9bec9ecfc829873f6",
+        "DGO/OGR.DGO": "61a89b12b34a3c4bcef90ad224abc0c16b6409a786e2ed0686a3506abb65c3cc",
+        "CGO/RACERP.CGO": "aee4fff6bd8c561bdcaa621f99cdc591510a87bedbdbf0ef4ebaaad5d0f0f0e0",
+        "DGO/ROB.DGO": "7568eb1edad2d1da22e19044270498b3610cd82006a1cc0e053b8159596dfeec",
+        "DGO/ROL.DGO": "3c5d122577001d81990fdb8c341a39cf3c7858dd2044abff44ba44bd21a66dc1",
+        "DGO/SNO.DGO": "157bfb70d8e4f9aef13c16c6dc0fe99b99fa494ff8ba642ccb5cca000fea744e",
+        "DGO/SUB.DGO": "136c7e3701aaff43f64d21293d2049c218e34c538d49c5ee24e40ff8cac42432",
+        "DGO/SUN.DGO": "fbe1f6b8ee7b1a0336446caf8308d6976ec6e48666879b153d8d618702e3fce5",
+        "CGO/SUNKEN.CGO": "97a9764f8b4680e1a7677807674094d2afac03b3e8b6a777ad9ffe503a8c315e",
+        "DGO/SWA.DGO": "3488e4119c7c7a28b9880e8980c28de265616610ea5529708d9c4260c9315a9b",
+        "DGO/TIT.DGO": "3bacb6a080e966503a7cc3145fa835cac57adbb70cd3e299a9f16d6c71c2f98f",
+        "DGO/TRA.DGO": "8aaf9dc070ecab420bfb2fc6e9c45a54a38985c261eec236f6ce328e8d1ced87",
+        "DGO/VI2.DGO": "899a7d7df64eb876a892810c946788eee551a88c92aea59f0f12789098933977",
+        "DGO/VI3.DGO": "e5583c43b586cd749c9056eb697504ec02989d117cac0e48e9047bff2fb1e9ff",
+        "CGO/VILLAGEP.CGO": "a66ecad28f01d69b0aa8c532a6f724cd1714405743ea0d527cce7f3fade26eea",
+        "CGO/WATER-AN.CGO": "3695fce41b9174902602c9bb44d903396e731d2c17f5df59232e5a58af85c056"
+      },
+      "validation": "Official v0.3.9 complete public-source EU build and model-component validation passed; bounded EU player runtime smoke passed",
+      "elfHash": 12150718117852276522,
+      "territory": 1,
+      "fullGame": true
+    },
+    "SCUS-97124": {
+      "inputs": {
+        "CGO/KERNEL.CGO": "d9db1f34eab7d3067e65f0e764407f8404a9934d52a7661e44e10083ee534045",
+        "CGO/GAME.CGO": "0960b6e690a738717ca5d00c0c978150e4709ef8dbb379af0788eba59d36e840",
+        "CGO/COMMON.CGO": "61041f72a795008bed282ff0899f4a7ccceca03ebc18331aef5ff07c80513258",
+        "DGO/VI1.DGO": "9300242a9ce06f48ca705b495b2fd9502457bdf42a4bb5e64be0a25a877b38f2",
+        "SYSTEM.CNF": "e8420b6e7550921bf1fb017cfbccb37bd7cca3aead4265f1cfb4f31906069e6f",
+        "SCUS_971.24": "b3051491a4f41bd90b345bbd91fe60b4c85f3060bacd0552903645f8d27268d5",
+        "DGO/BEA.DGO": "23309b4c20a18bc0db87b41a72635436735712747a56dcd8e2f92609adec4216",
+        "DGO/CIT.DGO": "6603a8823cded5956173bfc9cfa3e8f97c33503dfad85350070e78e7a362af3c",
+        "DGO/DAR.DGO": "fec406f46d0ac1fa84792ee212682f3217f50f0fd578ac01144dad59d08da12f",
+        "DGO/DEM.DGO": "a582247acf9224695629f64d3db171d2cd838a3240cfccef01a1b8b26d31a8b9",
+        "DGO/FIN.DGO": "9efa38cd2b9802cf23eba91b0355c39938566e9a5c650a3a73a7e33fd8fa616d",
+        "DGO/INT.DGO": "8adb5dcb0c306b7346586a3b32f72c573384451dde8aa2d54db5edf2282e45fc",
+        "DGO/JUB.DGO": "6b6da4b6d15231f896cafc85e67115cc03d83c1f55c79084e02155066c09e904",
+        "DGO/JUN.DGO": "5a735aefc62c3cda6721e4b29aeea149b9946aa7710346a1395eadfc4149e618",
+        "CGO/JUNGLE.CGO": "45a88e74da4b273fa2d437f288b55f2d220f209a4c69fdc6f0eece3fe2fe88c7",
+        "CGO/L1.CGO": "97da51eb4b94d14b261e249bc3eb4e5c7dead9141d53a408592c671f7a09c12a",
+        "DGO/FIC.DGO": "5b695200e0b6d3e501deea9b5e3933a9ed59f524585cd21bafe702e9e658cc6a",
+        "DGO/LAV.DGO": "706bb57b15fd89cba91b4b4a8f0d19c8fc2436d5b394e257ed6cdef8f6bce308",
+        "DGO/MAI.DGO": "e2fa89a972d6a48aab74c54842ba1fb20e308b7c58fe7b20a63a9916aea10fcd",
+        "CGO/MAINCAVE.CGO": "2402b3f8b537e979af34c782126d54e6da19c1629b9969a38cb2a7be7dcfd1e7",
+        "DGO/MIS.DGO": "eff33896d567a5aa44c5fe3742cf1b04e992f60ec1049be24c6c9dcbebc4dd54",
+        "DGO/OGR.DGO": "6b87ec8664a3278b9f35578d7bb9bade2c55ee903d538b6a4afd0d595be43b3c",
+        "CGO/RACERP.CGO": "a62e44fde12fc256aad9719ebddbd562f6b5916779592e3f5ab12752667bb2ba",
+        "DGO/ROB.DGO": "7568eb1edad2d1da22e19044270498b3610cd82006a1cc0e053b8159596dfeec",
+        "DGO/ROL.DGO": "2b3aadb962422a9fdeace2b4e94f344db39b40fe161d629ee0585c6da5334903",
+        "DGO/SNO.DGO": "f7e060b47e6386233c317f9cb294dc1fd0193066134d7aa02c8be32c5479a0c6",
+        "DGO/SUB.DGO": "136c7e3701aaff43f64d21293d2049c218e34c538d49c5ee24e40ff8cac42432",
+        "DGO/SUN.DGO": "e47eb1db982b99b3df69ec94fc4849da1c3b37ab5ea7a994acaee72d3c50163f",
+        "CGO/SUNKEN.CGO": "95eb1027fcd742b320b6d6f551ca9ae38d7e027139adceeedb0af5501b5d5724",
+        "DGO/SWA.DGO": "a4f8342b4d35d8ed449448487ed8f284f2208ebe589800ae03d9c347a9ff8868",
+        "DGO/TIT.DGO": "7226f8e0d2c833b6ac217a38658004380cd7a928bacc840e56145ada87d445d6",
+        "DGO/TRA.DGO": "2560df9297df22481d0644ca3d2da50b6a127ed2fd1c007531a9c3a27f9e962d",
+        "DGO/VI2.DGO": "b5cf2af2d3aa296a41657fe1f501c32623c78de8f38c3b371a5b6c103faf22cb",
+        "DGO/VI3.DGO": "e5583c43b586cd749c9056eb697504ec02989d117cac0e48e9047bff2fb1e9ff",
+        "CGO/VILLAGEP.CGO": "a66ecad28f01d69b0aa8c532a6f724cd1714405743ea0d527cce7f3fade26eea",
+        "CGO/WATER-AN.CGO": "3695fce41b9174902602c9bb44d903396e731d2c17f5df59232e5a58af85c056"
+      },
+      "validation": "Official v0.3.9 complete public-source USA Black Label build and model-component validation passed; USA runtime not repeated",
+      "elfHash": 7280758013604870207,
+      "territory": 0,
+      "fullGame": false
+    }
+  },
+  "donorProfiles": {
+    "SCES-51608": {
+      "inputs": {
+        "CGO/KERNEL.CGO": "0daea2a4859dbe67c2561879ea5789214b5ca6134b883e0ec93f3b81a173ed63",
+        "CGO/GAME.CGO": "02d3e120d19fb8558771e101b3a2f4453ad8264d9b80ec560bd6cd1c6a0d6f79",
+        "CGO/COMMON.CGO": "978afd811c60b60ecef008c44e5e9ec84a082bdc1f0e1993e8979daf7487b375",
+        "DGO/INTROCST.DGO": "fb983daeb6813f806c06227f67eb5cf542303745ebf7b4ec338fb5144ef70864",
+        "DGO/HIPHOG.DGO": "459e67a2adcbea3586522f0cd001594ac89a135c6ee09a6ddc53d5d4ca0b0e0b",
+        "DGO/LINTCSTB.DGO": "89250cd42d9187e32b91c36b6275e06cb2101e66fdf883549f65589f6832ae4f",
+        "SYSTEM.CNF": "1bc906a2d51e2e036c7377e8147bc70854874ecc01de5296eea1c8a3da816465",
+        "SCES_516.08": "81f3c37d0ce70245794bf441bb0c01841ac4036e2877532b9213575c855a6d92"
+      },
+      "validation": "Local input hashes verified; donors used successfully in the matching-region complete Jak 1 build",
+      "elfHash": 18188891052467821088
+    },
+    "SCUS-97265": {
+      "inputs": {
+        "CGO/KERNEL.CGO": "0daea2a4859dbe67c2561879ea5789214b5ca6134b883e0ec93f3b81a173ed63",
+        "CGO/GAME.CGO": "590e77160a55fc69a988f6edbb275af2fa5fb18f2fbdb9a5202eae942ad99d2e",
+        "CGO/COMMON.CGO": "978afd811c60b60ecef008c44e5e9ec84a082bdc1f0e1993e8979daf7487b375",
+        "DGO/INTROCST.DGO": "fb983daeb6813f806c06227f67eb5cf542303745ebf7b4ec338fb5144ef70864",
+        "DGO/HIPHOG.DGO": "459e67a2adcbea3586522f0cd001594ac89a135c6ee09a6ddc53d5d4ca0b0e0b",
+        "DGO/LINTCSTB.DGO": "89250cd42d9187e32b91c36b6275e06cb2101e66fdf883549f65589f6832ae4f",
+        "SYSTEM.CNF": "05d93668e717d83b08b930a92cf763646c711342152c0b09346f1054797c2666",
+        "SCUS_972.65": "fbb80af1e2328629ca66ff21785e59bf7fec34b165b4ff659aff20fa45de7b66"
+      },
+      "validation": "Local input hashes verified; donors used successfully in the matching-region complete Jak 1 build",
+      "elfHash": 18445016742498932084
+    }
+  },
+  "validationStatus": "Official v0.3.9 EU/USA public-source builds and model-component comparisons passed; bounded EU player runtime smoke passed; see repository verification report for scope",
+  "nativeArchives": [
+    "CGO/KERNEL.CGO",
+    "CGO/GAME.CGO",
+    "DGO/BEA.DGO",
+    "DGO/CIT.DGO",
+    "CGO/COMMON.CGO",
+    "DGO/DAR.DGO",
+    "DGO/DEM.DGO",
+    "DGO/FIN.DGO",
+    "DGO/INT.DGO",
+    "DGO/JUB.DGO",
+    "DGO/JUN.DGO",
+    "CGO/JUNGLE.CGO",
+    "CGO/L1.CGO",
+    "DGO/FIC.DGO",
+    "DGO/LAV.DGO",
+    "DGO/MAI.DGO",
+    "CGO/MAINCAVE.CGO",
+    "DGO/MIS.DGO",
+    "DGO/OGR.DGO",
+    "CGO/RACERP.CGO",
+    "DGO/ROB.DGO",
+    "DGO/ROL.DGO",
+    "DGO/SNO.DGO",
+    "DGO/SUB.DGO",
+    "DGO/SUN.DGO",
+    "CGO/SUNKEN.CGO",
+    "DGO/SWA.DGO",
+    "DGO/TIT.DGO",
+    "DGO/TRA.DGO",
+    "DGO/VI1.DGO",
+    "DGO/VI2.DGO",
+    "DGO/VI3.DGO",
+    "CGO/VILLAGEP.CGO",
+    "CGO/WATER-AN.CGO"
+  ]
+}

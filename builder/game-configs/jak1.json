@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "game": "jak1",
+  "displayName": "Jak and Daxter: The Cinematic Legacy",
+  "modName": "jak1-cinematic-models-windows-x64",
+  "builderModule": "jak1.build_release",
+  "compatibilityFile": "jak1/compatibility.json",
+  "donorGame": "jak2",
+  "runtimeFolders": [
+    "out/jak1/fr3",
+    "out/jak1/iso",
+    "game",
+    "goal_src",
+    "decompiler",
+    "custom_assets"
+  ],
+  "thumbnail": "artwork/jak1.png",
+  "installGuide": "LAUNCHER-INSTALL.txt",
+  "description": "Cinematic character models in Jak and Daxter gameplay"
+}
