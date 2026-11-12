@@ -9,4 +9,4 @@ CPython distributions. Their versions, source URLs and archive hashes are record
 in `builder/platforms/windows-x64.json` and `builder/platforms/macos-arm64.json`.
 Runtime and dependency license files remain in the installer bundle.
 
-The code license does not cover game assets generated from a user's installation or the game screenshots used for comparisons and thumbnails. Generated models and textures are excluded from public downloads; comparison and thumbnail imagery is included.
+The code license does not cover game assets generated from a user's installation or game screenshots and model views used in the documentation. Generated models and textures are excluded from public downloads; documentation imagery is included.

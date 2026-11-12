@@ -1,7 +1,5 @@
 # Install Jak and Daxter: The Cinematic Legacy
 
-The current Mac mouth correction is awaiting validation. Its native model check is blocked by a nearest-triangle tie. See [verification](verification.md) before treating this candidate as ready.
-
 Use the Jak and Daxter **Features > Mods > Add from File** button in OpenGOAL Launcher. Select this game's Windows x64 ZIP or Apple Silicon TAR.GZ without unpacking it. Setup builds the models from your own installed files.
 
 Use official OpenGOAL tooling **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Windows 10 or newer on x64 and Apple Silicon macOS are the target platforms. Intel Macs and Linux are unsupported.
@@ -18,7 +16,7 @@ The installer includes Python and its dependencies. No terminal, Blender or sepa
 
 ## Saves and updates
 
-Each mod has its own save folder. Vanilla saves stay in place and are not copied automatically. To continue an existing save, close the games and use the launcher's save-folder controls to copy it into the mod's save folder. Keep the original save.
+Each mod has its own save folder. Vanilla saves stay in place and are not copied automatically. To continue an existing save, close the games and use the launcher's save-folder controls to copy it into the mod's save folder. Keep the original save. [Copy guide with screenshots](copy-saves.md).
 
 Keep the local archive filename unchanged when updating. Launcher v2.11.2 uses that name to identify local imports. Use TAR.GZ on macOS; the checked launcher version cannot complete local Mac imports from ZIP.
 

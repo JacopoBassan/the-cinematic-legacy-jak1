@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "description": "Documentation screenshots and model views. Source pixels are preserved through cropping, placement and lossless encoding. Mesh views are rendered from the original model data.",
+  "assets": [
+    {
+      "path": "media/jak1-jak-sources.webp",
+      "sha256": "1e3aaf8ad3fe4f93b90e0a80ec766ea2569709a070f3f2a9b13218ad2ea1717f",
+      "dimensions": [
+        1200,
+        620
+      ],
+      "sourceSha256": "1e3aaf8ad3fe4f93b90e0a80ec766ea2569709a070f3f2a9b13218ad2ea1717f",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak2-ashelin-sources.webp",
+      "sha256": "e29fdee8da0e7c543a338d83f5bf520c20a6298133a78a4c76fcfa2753c0a48b",
+      "dimensions": [
+        1200,
+        620
+      ],
+      "sourceSha256": "e29fdee8da0e7c543a338d83f5bf520c20a6298133a78a4c76fcfa2753c0a48b",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak3-daxter-sources.webp",
+      "sha256": "b9d2eeee63c48ec72548e89708d91e7c43ef88b511345f53a344d372f1956911",
+      "dimensions": [
+        1200,
+        620
+      ],
+      "sourceSha256": "b9d2eeee63c48ec72548e89708d91e7c43ef88b511345f53a344d372f1956911",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/rig-and-face.webp",
+      "sha256": "39f7127d11369d8eb5d3cf2b014298308a4ebbcca8eda96e94448d2fa94a16a3",
+      "dimensions": [
+        1170,
+        570
+      ],
+      "sourceSha256": "83551f5fd08f25c2ffccb93968bcb1b8f7e5770160543445c30e005e042bfc10",
+      "crop": [
+        15,
+        130,
+        1185,
+        700
+      ],
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "comparisons/jak1/jak-front-ae65be5000ef.webp",
+      "sha256": "ae65be5000ef1306007f30d5a9a0dedc890335ca6b0c1304b130f7d926288366",
+      "dimensions": [
+        892,
+        868
+      ],
+      "sourceSha256": "ae65be5000ef1306007f30d5a9a0dedc890335ca6b0c1304b130f7d926288366",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak2-sig.jpg",
+      "sha256": "5f864987d0d4a64d5ecfcd50ce552c5092d968c8149b9ce8a18f02ed66eea119",
+      "dimensions": [
+        1312,
+        748
+      ],
+      "sourceSha256": "5f864987d0d4a64d5ecfcd50ce552c5092d968c8149b9ce8a18f02ed66eea119",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak2-ashelin.jpg",
+      "sha256": "22bcc6a5bdf6063586b4b7a4b629120bbbc2876e9aa2c0f10ceb07aba9ff1e5c",
+      "dimensions": [
+        1172,
+        808
+      ],
+      "sourceSha256": "22bcc6a5bdf6063586b4b7a4b629120bbbc2876e9aa2c0f10ceb07aba9ff1e5c",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak3-daxter.webp",
+      "sha256": "4287fe110b75adc7517c1683d3d0d0880629b7de46230ee5a03b149113da400f",
+      "dimensions": [
+        756,
+        778
+      ],
+      "sourceSha256": "4287fe110b75adc7517c1683d3d0d0880629b7de46230ee5a03b149113da400f",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/01-daxter-face-point-cloud.webp",
+      "sha256": "ee2dbbea87c6160221bf8f61f5aedc0e6c5351c08fd71d2e4c997165dd77c09d",
+      "dimensions": [
+        1500,
+        650
+      ],
+      "sourceSha256": "ce19865996ce6039fa82d76e9b58b6ad38b0f275dcc6ce4880cd7def18709075",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/02-first-rig-prototype.webp",
+      "sha256": "dd1f51af00adfab03efbc93ba00d4416d4ee5f0e4fdb81618ba1a77b77fecc8b",
+      "dimensions": [
+        1500,
+        900
+      ],
+      "sourceSha256": "b0b5e25d246a91637db0eb0ebbf42fd4ac827478f383393bc475fcb9da3cff00",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/03-jak3-skirt-ribbon.webp",
+      "sha256": "da17ee4b928672dd4e789033beb5345ffb900cc94ee4a49ce976391694966792",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "8f351fead5e8d11fc4735f92b1d94c3f53f9699112fb58f3714563fe96164c2b",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/05-jak1-mouth-before-after.webp",
+      "sha256": "23547267847a8dee5cfd175e08847b9f415f719959f1c5f31a0d818b4a6156ee",
+      "dimensions": [
+        652,
+        304
+      ],
+      "sourceSha256": "367f1bd5b46d663dc952e1113f47c0a261dff096b7e61e8854e78042bba72f2d",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/01-early-jak3-gameplay.webp",
+      "sha256": "526f11e6a2693f19a8dff97b5747f18e48c7f45ca2f6176ffcae91d567acd91c",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "61382ed993124ed10ed89b494eb9d2dcf5a4190c865221e00ba813542725696d",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/02-keira-runaway-cuff.webp",
+      "sha256": "651ac1d3b094f22ef856023b91a4097e6b019fb86a33427b76f7670788db5475",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "a90d1a5e97875919d866eea26592b0e3167dcc1fcdd63971d91a056581f266d8",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/samos-beard-before-after.webp",
+      "sha256": "e95f82aeea9a914731da1b99a46ac2d3d3e15a017c054f649868cad7c278f722",
+      "dimensions": [
+        1236,
+        710
+      ],
+      "sourceSha256": "e95f82aeea9a914731da1b99a46ac2d3d3e15a017c054f649868cad7c278f722",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak1-ndi-logo-comparison.webp",
+      "sha256": "df6fce99ece3ea65439e89c47d1ff6ef77cb5dedfcdefb815f97bf993acc2ccf",
+      "dimensions": [
+        2642,
+        576
+      ],
+      "sourceSha256": "6d5cea4c3d5e76cc5b61395b636ae1bf4e552fa3b1796c150b73862e904186eb",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak1-ndi-characters-comparison.webp",
+      "sha256": "3ba8f7b46acc40f8eb2d0587c62d1afb1cb58028e8680fd9a97ad63fec41ff6d",
+      "dimensions": [
+        612,
+        576
+      ],
+      "sourceSha256": "ee2de90c2af3e8b74ade8c46f6facb20390c2a03fd6eb91b91645f90b07306d8",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/vanilla-saves-menu.webp",
+      "sha256": "40432db3b850c84051c0ef8fcc96f12b7e1fe15cd34b1467d653cb8ad9253b8e",
+      "dimensions": [
+        286,
+        307
+      ],
+      "sourceSha256": "650487ea30d6be814ec841a7ff9c90d161dd031b5cabd82e4143de8f800ec5cf",
+      "crop": [
+        728,
+        325,
+        1014,
+        632
+      ],
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/cinematic-legacy-saves-menu.webp",
+      "sha256": "72582b97623dde4093c261ebff34944f432982d77e09197ee8ead0c8b241b75d",
+      "dimensions": [
+        286,
+        307
+      ],
+      "sourceSha256": "a8c9f21982fa133062d4890a97f8bbd716643563efa3af227de24883b42da08d",
+      "crop": [
+        728,
+        325,
+        1014,
+        632
+      ],
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak2-hero.jpg",
+      "sha256": "f9f4732cbf9693d4a5455f160b63e931419faebfcd04278a2ef4b6b247edb727",
+      "dimensions": [
+        1072,
+        978
+      ],
+      "sourceSha256": "f9f4732cbf9693d4a5455f160b63e931419faebfcd04278a2ef4b6b247edb727",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    },
+    {
+      "path": "media/jak3-hero.webp",
+      "sha256": "0a4800e6e43d52044d5431604a0bb5b185b50c3588e95976a2aac4ddef9d1440",
+      "dimensions": [
+        936,
+        958
+      ],
+      "sourceSha256": "0a4800e6e43d52044d5431604a0bb5b185b50c3588e95976a2aac4ddef9d1440",
+      "crop": null,
+      "decodedSourcePixelsPreserved": true
+    }
+  ],
+  "scope": "Documentation images. No extracted model or texture files."
+}
