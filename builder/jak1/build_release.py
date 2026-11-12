@@ -28,7 +28,7 @@ TARGET_ARCHIVES = ['CGO/KERNEL.CGO', 'CGO/GAME.CGO',
 DONOR_ARCHIVES = ['CGO/KERNEL.CGO', 'CGO/GAME.CGO', 'CGO/COMMON.CGO',
                   'DGO/INTROCST.DGO', 'DGO/HIPHOG.DGO', 'DGO/LINTCSTB.DGO']
 SOURCE_CLOSURE = ['jak1/build_release.py', 'jak1/compatibility.json',
-    'platform_tools.py', 'platforms/macos-arm64.json',
+    'platform_tools.py', 'platforms/macos-arm64.json', 'platforms/linux-x64.json',
     'game-configs/jak1.json', 'jak1/jak1_paths.py', 'jak1/rig_validation.py',
     'jak1/build_prototypes.py', 'jak1/keira_feet.py', 'jak1/refit_keira_cuffs.py',
     'jak1/native_io.py', 'jak1/verify_import.py', 'jak1/build_materials.py',
