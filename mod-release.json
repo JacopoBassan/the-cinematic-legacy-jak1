@@ -4,6 +4,6 @@
   "displayName": "Jak and Daxter: The Cinematic Legacy",
   "description": "Cinematic character models in Jak and Daxter gameplay",
   "repository": "JacopoBassan/the-cinematic-legacy-jak1",
-  "version": "0.3.0-rc.1",
+  "version": "0.3.0",
   "openGoalVersion": "v0.3.9"
 }
