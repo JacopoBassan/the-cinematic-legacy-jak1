@@ -24,7 +24,7 @@ METAL_NATIVE={
  ('sage-lod0',3):3,
 }
 METAL_TEXTURES={
- ('eichar-lod0',2):{'jak-orig-armor','jak-orig-clips','jak-orig-goggles','jak-orig-lenscover'},
+ ('eichar-lod0',2):{'bam-armor'},
  ('sidekick-lod0',1):{'daxterlense'},
  ('sidekick-lod0',2):{'daxtergoggles','daxterbolt'},
  ('sage-lod0',0):{'samos-metal'},
@@ -151,8 +151,15 @@ def main():
                     if pi not in omitted:kept.append(draw)
                     pi+=1
                 counts.append(sum(DRAW.unpack(d)[5] for d in kept))
+            triangle_overrides={}
+            if name=='eichar-lod0':
+                assert len(counts)==4
+                assert DRAW.unpack(original['effects'][3]['draws'][14])[5]==412
+                counts[3]-=16
+                triangle_overrides={22:(412,396)}
             raw=restore(raw,cinematic,(WORK/f'rig-prototypes/{name}.glb').read_bytes(),
-                        name=name,donor_name=source,expected_triangles=counts,omitted_primitive_indices=omitted)
+                        name=name,donor_name=source,expected_triangles=counts,omitted_primitive_indices=omitted,
+                        triangle_overrides=triangle_overrides)
             target=model(raw,name)
             target['tail']=target['tail'][:8]+model(baseline,name)['tail'][8:]
             pi=0

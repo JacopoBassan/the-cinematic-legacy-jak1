@@ -1,6 +1,6 @@
 {
   "game": "jak1",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "openGoalVersion": "v0.3.9",
   "platform": "windows-x64",
   "supportedSerials": [
@@ -81,7 +81,7 @@
         "CGO/VILLAGEP.CGO": "a66ecad28f01d69b0aa8c532a6f724cd1714405743ea0d527cce7f3fade26eea",
         "CGO/WATER-AN.CGO": "3695fce41b9174902602c9bb44d903396e731d2c17f5df59232e5a58af85c056"
       },
-      "validation": "Official v0.3.9 complete public-source EU build and model-component validation passed; bounded EU player runtime smoke passed",
+      "validation": "Official v0.3.9 complete EU build and model-component validation passed on 2026-11-15; sampled EU gameplay and cinematic checks passed",
       "elfHash": 12150718117852276522,
       "territory": 1,
       "fullGame": true
@@ -125,7 +125,7 @@
         "CGO/VILLAGEP.CGO": "a66ecad28f01d69b0aa8c532a6f724cd1714405743ea0d527cce7f3fade26eea",
         "CGO/WATER-AN.CGO": "3695fce41b9174902602c9bb44d903396e731d2c17f5df59232e5a58af85c056"
       },
-      "validation": "Official v0.3.9 complete public-source USA Black Label build and model-component validation passed; USA runtime not repeated",
+      "validation": "Official v0.3.9 complete USA Black Label build and model-component validation passed on 2026-11-15; USA gameplay not tested",
       "elfHash": 7280758013604870207,
       "territory": 0,
       "fullGame": false
@@ -161,7 +161,7 @@
       "elfHash": 18445016742498932084
     }
   },
-  "validationStatus": "Official v0.3.9 EU/USA public-source builds and model-component comparisons passed; bounded EU player runtime smoke passed; see repository verification report for scope",
+  "validationStatus": "Official v0.3.9 EU/USA builds and character model comparisons passed on 2026-11-15; sampled EU gameplay and cinematic checks passed; USA gameplay not tested; see repository verification for scope",
   "nativeArchives": [
     "CGO/KERNEL.CGO",
     "CGO/GAME.CGO",

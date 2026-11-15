@@ -6,11 +6,11 @@ Install a supported local Jak and Daxter game first. Vanilla Jak II must also be
 
 The checked launcher requires TAR.GZ for local Mac imports. Use the Mac package; Windows executables and generated game code are platform-specific.
 
-## Current validation
+## Recorded validation
 
-The current mouth correction passes native ARM64 model reconstruction. Its tooth weights match the Windows reference. Geometry, joint routing, morphs, materials and image bytes also match. Small face and brow weight differences remain between platforms. The original full builder produces the same Mac brow weights as the split builder. See [verification](verification.md) for the measured differences.
+The mouth correction checked on 2026-11-11 passed native ARM64 model reconstruction. Its tooth weights match the Windows reference. Geometry, joint routing, morphs, materials and image bytes also match. Small face and brow weight differences remain between platforms. The original full builder produces the same Mac brow weights as the split builder. See [verification](verification.md) for the measured differences.
 
-The 2026-10-31 mouth, brow and trouser motion results came from an earlier build. No new full player session was run for the source split. The current model checks and historical visual results are recorded separately.
+The 2026-10-31 mouth, brow and trouser motion results came from an earlier build. No new full player session was run for the source split. The dated model checks and historical visual results are recorded separately. The clothing, cloth-fit and Samos corrections in 0.3.1 have not had a new native Mac model conversion or player session.
 
 ## Developer checks
 

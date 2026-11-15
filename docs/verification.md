@@ -1,18 +1,20 @@
 # Jak and Daxter verification
 
-Release `0.3.0` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
+Release `0.3.1` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
 
-## Current source checks, 2026-11-11
+## Source checks
 
-The current mouth correction passes a fresh native ARM64 model reconstruction. Two Mac runs produced identical files. The full Windows comparison matches tooth weights, joint indices, geometry, topology, morphs, bind matrices, materials and image bytes. Two other float weight arrays differ across platforms: the maximum face difference is `0.0000001192`; the maximum brow difference is `0.0001001358`. The original full builder produces exactly the same Mac brow weights as the split builder. This numerical difference predates the source split and tooth correction.
+The tooth correction tested on Apple Silicon on 2026-11-11 passes native ARM64 model reconstruction. Two Mac runs produced identical files. The full Windows comparison matches tooth weights, joint indices, geometry, topology, morphs, bind matrices, materials and image bytes. Two other float weight arrays differ across platforms: the maximum face difference is `0.0000001192`; the maximum brow difference is `0.0001001358`. The original full builder produces exactly the same Mac brow weights as the split builder. This numerical difference predates the source split and tooth correction.
 
-The game-specific suite completed 60 tests on Apple Silicon: 56 passed and four Windows-only cases were skipped. Twelve portable filesystem fixtures also passed on this Mac. All 13 Windows filesystem fixtures remain configured for native Windows checks.
+On 2026-11-11, the game-specific suite completed 60 tests on Apple Silicon: 56 passed and four Windows-only cases were skipped. Twelve portable filesystem fixtures also passed on this Mac.
 
-Coverage includes wrong-game inputs, corrupt packages, source inventories, staged writes, rollback, interrupted transactions, hardlinks and lock ownership. Native Windows junction, path and child-process checks require the Windows run. These source checks are separate from player testing.
+On Windows, all 60 tests and 13 installer filesystem checks passed on 2026-11-15. The repository verifier also passed for all 52 source files, 42 runtime files and 10 comparisons.
+
+Coverage includes wrong-game inputs, corrupt packages, source inventories, staged writes, rollback, interrupted transactions, hardlinks and lock ownership. The Windows checks also cover junctions, paths and child-process cleanup. These source checks are separate from player testing.
 
 [`builder/source-files.json`](../builder/source-files.json) separates the complete `sourceFiles` developer ZIP from the smaller `runtimeFiles` installer source set. Package checks verify each manifest against its own file set. They also check pinned dependencies, runtime versions, Windows adapter provenance and Mac/Linux executable modes. Game models and textures are excluded from distributable source and installer archives.
 
-The fresh per-game layout has not had a new full player session. Historical coverage follows.
+The latest model corrections were checked on Windows. Mac model and player checks below apply to their dated builds; the latest clothing, cloth-fit and Samos corrections have not had a new native Mac model conversion or player session.
 
 ## Linux package and installer checks
 
@@ -28,7 +30,11 @@ Release assembly passed with both builder and standard archive names. Checks cov
 
 The builder produces replacements for Jak, Daxter, Samos and Keira. It checks geometry, facial buffers, textures, material flags and the scoped bones-object change in GAME.CGO.
 
-The builder checks original tools, disc revisions and consumed assets before conversion. It validates the generated model data and records payload checksums. Earlier conversions covered the supported EU and USA profiles, including the Jak 1 Black Label edition setting.
+The builder checks original tools, disc revisions and consumed assets before conversion. It validates the generated model data and records payload checksums.
+
+Complete Windows EU and USA Black Label conversions passed on 2026-11-15 with the clothing, cloth-fit and Samos corrections. All four generated character prototypes match between regions. GAME.fr3 decodes identically, and the village character models, vertex and index data, morph buffers and textures match. Regional level data outside those character sections can differ. USA gameplay was not tested.
+
+Windows EU checks covered sampled opening-cinematic frames, matched character views, facial expressions and representative idle, walk, run, jump, landing and turning motion. The complete generated character data matches the data inspected in those captures. The Samos socket correction preserves eye controls and facial animation buffers; its forced blink screenshot did not independently demonstrate a blink.
 
 ## Historical player coverage
 
@@ -43,11 +49,12 @@ The [gallery](comparisons/jak1.md) contains 10 matched comparisons for Jak and D
 
 Refreshed comparison images use a content hash in the filename and plain relative Markdown links for GitHub mobile compatibility.
 
-Before-and-after images, including launcher thumbnails, must use unchanged screenshot pixels. Only cropping, placement and lossless compression are allowed. Do not use image generation, redraw details, retouch colours or upscale captures. Thumbnail source hashes and crop rectangles are recorded in [`mod-source-provenance.json`](../mod-source-provenance.json).
+Before-and-after images, including launcher thumbnails, must use unchanged screenshot pixels. Only cropping, placement and lossless compression are allowed. Do not use image generation, redraw details, retouch colors or upscale captures. Thumbnail source hashes and crop rectangles are recorded in [`mod-source-provenance.json`](../mod-source-provenance.json).
 
 ## Limits
 
 - Shadows retain the original gameplay hulls and can differ from cinematic contours.
 - NPCs keep gameplay expression and gaze behavior. The mod adds no gaze-tracking AI or cinematic dialogue lip-sync.
 - Player checks cover representative scenes and animations, not a full campaign or every NPC.
-- The source split and mouth correction were checked with real model data. A new full player session was not run. The historical visual checks remain limited to their recorded builds.
+- A full campaign has not been tested. Fine texture seams and animated metal reflections were not fully verified by the representative movement captures.
+- The latest Windows EU checks and USA conversion are recorded separately from the earlier Mac player coverage.

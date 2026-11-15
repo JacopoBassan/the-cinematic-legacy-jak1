@@ -10,12 +10,12 @@
         {
           "subject": "Jak",
           "view": "Front",
-          "path": "jak1/jak-front-ae65be5000ef.webp",
+          "path": "jak1/jak-front-467c555b9af9.webp",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "ae65be5000ef1306007f30d5a9a0dedc890335ca6b0c1304b130f7d926288366",
+          "sha256": "467c555b9af9691b2bf6996f0a9ae97ad8df4faeace64ea88f0f0f7462a896c7",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -30,8 +30,8 @@
             "sourceImagesResized": false,
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
-              "original": "7f5d32dc3e0dd59d45e855c9727f561d77430d4758c5a32b9b333f33d89de8e2",
-              "cinematic": "d4019dfdac625721944abb90a93dad4cb1a0ecb2dcd21637b8c3b343de1b1a94"
+              "original": "9986a477023d66a1058a53711d542632e1333041a42097dbae3db62f5621caa4",
+              "cinematic": "1b364b28580353e7f981b86527b63d5a729d10d429749dad28690b53ada7e46f"
             },
             "outputEncoding": {
               "format": "WebP",
@@ -42,34 +42,34 @@
               "header": 48,
               "gap": 12,
               "margin": 0
-            }
+            },
+            "timeOfDay": "17:00"
           },
           "losslessCompression": {
             "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "72ea3e6e3f23550dfed524cc63bffb18fb697dc06cdd69a53e62433070eb1303",
-            "decodedRgbSha256": "313bf02b879be2198fdfa8035563ae826af62d905e4aed4d9c76e15e4dc12874",
-            "method": "cwebp lossless exact z9",
+            "sourceSha256": "ea8992c9c7ee3ed8237b8c6944b40cc350b15f094a99e0de6e780698f26d6bac",
+            "decodedRgbSha256": "ab55da324ec97f15df9a929b905084525f3411006525e075ffa8ee3199569772",
+            "method": "Pillow WebP lossless exact",
             "rawPanelPixelsMatchExactly": true
           },
-          "bytes": 640434,
+          "bytes": 748202,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
-            "rigSourceSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
-            "jakPrototypeSha256": "53d9a448ae32fe110266cac817b73c5ff23bdeacae093a1ec72e8cf895fc8754",
-            "cinematicGameFr3Sha256": "7637993babdb82ed57a589e128a072c1eadc4fe762f875a5ca78149af52d0cbf",
-            "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34"
+            "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
+            "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
+            "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
           }
         },
         {
           "subject": "Jak",
           "view": "Side",
-          "path": "jak1/jak-side-43dbf956e937.webp",
+          "path": "jak1/jak-side-1dec0a2f1ff8.webp",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "43dbf956e93734d39d962b79853615a3e663e6dd4dd331ac2bb206d63279bd8d",
+          "sha256": "1dec0a2f1ff89d6d24d3f04d3a3eef98d13b430b938c121743a101afc7f75c4d",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -84,8 +84,8 @@
             "sourceImagesResized": false,
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
-              "original": "c9757d8888e39f11a6672c0da6d54244f29c1aeedebc18267cbb595ae19ebd1e",
-              "cinematic": "c7da9ee3807e9714bc6268b99b43827c58c63a831fe57a4586cdd46e5d791eb4"
+              "original": "f05c52a3ec9478051559b7042ee5c198716f572eb01703afb7430bd0650384d5",
+              "cinematic": "a7c9af70dfeccbc07317ff21a6012d5c9cde3ebf8cf7873eaa89bf453cfeb771"
             },
             "outputEncoding": {
               "format": "WebP",
@@ -96,34 +96,34 @@
               "header": 48,
               "gap": 12,
               "margin": 0
-            }
+            },
+            "timeOfDay": "09:00"
           },
           "losslessCompression": {
             "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "29fcd4ed740ad5084cc59734b6dec9671498b894b211225aa7bd33a6710611ad",
-            "decodedRgbSha256": "ea93bbe0bd9736f863ec8379e030b41a57c01557a2f4d461a81ae253b6de8303",
-            "method": "cwebp lossless exact z9",
+            "sourceSha256": "218f38023fff114dbedf38145cd14ffe52050ee3b3d666b5db28c789f597e976",
+            "decodedRgbSha256": "32a8fe4fb025005f0df403e42f13f681c3807ed420d88b8c3a9d87c911254996",
+            "method": "Pillow WebP lossless exact",
             "rawPanelPixelsMatchExactly": true
           },
-          "bytes": 493052,
+          "bytes": 544676,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
-            "rigSourceSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
-            "jakPrototypeSha256": "53d9a448ae32fe110266cac817b73c5ff23bdeacae093a1ec72e8cf895fc8754",
-            "cinematicGameFr3Sha256": "7637993babdb82ed57a589e128a072c1eadc4fe762f875a5ca78149af52d0cbf",
-            "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34"
+            "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
+            "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
+            "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
           }
         },
         {
           "subject": "Jak",
           "view": "Back",
-          "path": "jak1/jak-back-dfd90323530d.webp",
+          "path": "jak1/jak-back-ced1a3debb85.webp",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "dfd90323530db4c34eadaca1e7f307b5d89e752cf66557344d2ddae383664dd2",
+          "sha256": "ced1a3debb85c901ff348808071ac88abfeecaf7583ec4b1e46dd1cdd88fdd94",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -138,8 +138,8 @@
             "sourceImagesResized": false,
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
-              "original": "f2fe3c7ac25a79369f3f7bd76bab58cc0614c32c6d83376075abcb8d73427e8c",
-              "cinematic": "7a261e5fbd99897f27ecd1a7e139c114e0bde7980bb9a85e3cd57373e9787473"
+              "original": "ceda6a6cdd322ca00f630c4307041485ba8ff1dbb031559ce3c94ee8e4a502ad",
+              "cinematic": "759dbfa095eba9d22afca70fbd77deaf2036ab6f63ea189fa4254874723c817b"
             },
             "outputEncoding": {
               "format": "WebP",
@@ -150,23 +150,23 @@
               "header": 48,
               "gap": 12,
               "margin": 0
-            }
+            },
+            "timeOfDay": "09:00"
           },
           "losslessCompression": {
             "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "69e7bd4e98354a5102ebe627e8d2afa85cfa2596385d77e1386fe2e67369a7f7",
-            "decodedRgbSha256": "ef355b68c96631864f351b78d9f9ff0b70512d62ee31d425cce7a0998edfe578",
-            "method": "cwebp lossless exact z9",
+            "sourceSha256": "ac66c3296c39aa10ec458f8444ceb81814b0e03b782a3fc34bedeff31ad1f7c3",
+            "decodedRgbSha256": "98545a1eb91dc96c482ec0ace3e807c7060cbdbc3af9bdf48457b73c5e160541",
+            "method": "Pillow WebP lossless exact",
             "rawPanelPixelsMatchExactly": true
           },
-          "bytes": 566418,
+          "bytes": 630150,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
-            "rigSourceSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
-            "jakPrototypeSha256": "53d9a448ae32fe110266cac817b73c5ff23bdeacae093a1ec72e8cf895fc8754",
-            "cinematicGameFr3Sha256": "7637993babdb82ed57a589e128a072c1eadc4fe762f875a5ca78149af52d0cbf",
-            "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34"
+            "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
+            "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
+            "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
           }
         },
         {
@@ -216,12 +216,12 @@
         {
           "subject": "Samos",
           "view": "Front",
-          "path": "jak1/samos-front.jpg",
+          "path": "jak1/samos-front-a4dcf5ae91fe.webp",
           "dimensions": [
             1532,
             1108
           ],
-          "sha256": "b3d558bf63bd266595515133ff5941bc909accc20808ac90c8ce26b245e90386",
+          "sha256": "a4dcf5ae91fe8796d83c6bcbb80d9b099b203b63e34f227af49266bc0516a369",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -236,14 +236,13 @@
             "sourceImagesResized": false,
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
-              "original": "3e57c3d2c46eed4d7805088741a1d0696ea41f5b64421b5e835e36847d4c8b91",
-              "cinematic": "00cf3445adfa51a28d532f86e0162ce5c1433cff59e0425b50f55abdffa31a7a"
+              "original": "1cae9cb08dfed6dfd95702416b74ee439d8c120f7f1ed4514211763cbe836cdc",
+              "cinematic": "5395c5fe6713c8108535c20cd5b8d54c6ccb882f903f83ce9fec7edec7ee3a6a"
             },
             "outputEncoding": {
-              "format": "JPEG",
-              "quality": 100,
-              "subsampling": 0,
-              "lossless": false
+              "format": "WebP",
+              "lossless": true,
+              "exact": true
             },
             "outputLayout": {
               "header": 48,
@@ -252,9 +251,24 @@
             }
           },
           "losslessCompression": {
-            "sourceSha256": "ce0972186ea7ba4226e04ccd15959544a813148e648277aad6d06386aaa6f199",
-            "decodedRgbSha256": "a946425f8fc8b3994c23d9a16e4038d89751e1422ed9118ca8e39d7dcecae2a3",
-            "method": "jpegtran progressive"
+            "sourceType": "Composition of current raw PNG screenshot crops",
+            "sourceSha256": "f4fb5f90414c11325cdc3cb69f3c1c9ae8889e651f97b201360fe49f545e487a",
+            "decodedRgbSha256": "6fd99d6b92c16ad8a578251094f71a12dd0ba27d9d2ce9a25e792813713b0278",
+            "method": "Pillow WebP lossless exact",
+            "rawPanelPixelsMatchExactly": true
+          },
+          "bytes": 1610266,
+          "captureBuild": {
+            "openGoalVersion": "v0.3.9",
+            "platform": "windows-x64",
+            "rigSourceSha256": "74cccf71f18d6deee9148cd08c11a6217e7374819f6d466d617daa9477acc71a",
+            "jakPrototypeSha256": "8f94f5cf781b0dc05bd964cc457041db6c1dd3476dc03fbf8aa093bd8c9e1f33",
+            "cinematicGameFr3Sha256": "fc3dc368ccb48505e0debc2e0b63bd6ef75795110b586202b1550abc8f1a8c35",
+            "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34",
+            "cinematicVillage1Fr3Sha256": "31d91553d5f5b196511e6f66a8d26b06fbc8d0ebee079643e9f7355627395f72",
+            "originalVillage1Fr3Sha256": "e6d630ac99d19676a3337ab1904e8acfafd7f665faf4aa0de40979d7dedcb5e2",
+            "samosFaceSourceSha256": "6948ce2b0f41912c98aa211e90477b2ec6a41ad61c5cd909b3f50a058b999a64",
+            "samosTextureStageSha256": "5616e6d725dd9ed4f770dac1431fdd0ef280284e19a923d65dfbaee2793ac6e5"
           }
         },
         {

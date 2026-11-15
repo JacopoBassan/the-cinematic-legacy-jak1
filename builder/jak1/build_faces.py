@@ -41,12 +41,19 @@ def main():
                           ('village1',[('sage-lod0','village1'),('assistant-lod0','village1')])]:
         raw=decompress(WORK/f'{archive}-materials.fr3');baseline=decompress(WORK/f'{archive}-original.fr3')
         start,indices,_,original_vertices=buffers(raw,names[0][0]);vertices=bytearray(original_vertices);new_indices=indices;updates=[]
+        geometric_rows={'position':[],'normal':[]}
         for name,folder in names:
             ld,la=glb(DATA/f'decompiler_out/jak1/levels/{folder}/{name}.glb')
             hd,ha=glb(WORK/f'rig-prototypes/{name}.glb')
             lp,hp=ld['meshes'][0]['primitives'],hd['meshes'][0]['primitives']
             count=len(lp[0]['targets']);coefficient=np.load(WORK/f'face-candidates/{name}-coefficients.npy')
             assert coefficient.shape==(count,len(hp[0]['targets']))
+            samos_clearance=None
+            if name=='sage-lod0':
+                from native_samos import fitted_samos_face_accessors
+                ha,samos_clearance=fitted_samos_face_accessors(raw,name,hd,ha,new_indices,vertices)
+                geometric_rows['position'].extend(samos_clearance['packedPositionRows'])
+                geometric_rows['normal'].extend(samos_clearance['packedNormalRows'])
             deformations={}
             for pi,p in enumerate(hp):
                 dp=np.einsum('ct,tnj->cnj',coefficient,np.array([ha(t['POSITION']) for t in p['targets']]))
@@ -60,6 +67,10 @@ def main():
             for pi,side in high_eyes.items():
                 # Native Jak 1 blink/expression channels also move the eye surface.
                 deformations[pi]=transfer(hp[pi],ha,[lp[low_eyes[side]]],la)
+            samos_socket_rims=None
+            if name=='sage-lod0':
+                from native_samos import anchor_native_samos_socket_rims
+                samos_socket_rims=anchor_native_samos_socket_rims(lp,la,hd,ha,deformations)
             native=model(baseline,name)
             ids=sorted({DRAW.unpack(d)[2] for e in native['effects'] for d in e['draws'] if DRAW.unpack(d)[2]!=255})
             assert len(ids)==2 and ids[0]%2==0 and ids[1]==ids[0]+1,(name,ids)
@@ -80,20 +91,31 @@ def main():
                 # Keep this projection in the copied modified eye buffer too.
                 # Native blink/expression geometry above remains unchanged.
                 native_uv_data=None
+            elif name=='sage-lod0':
+                from native_samos import authored_samos_eye_uvs
+                authored_uvs,eye_uv_report=authored_samos_eye_uvs(hp,ha,high_eyes)
+                from eye_alignment import write_eye_uvs
+                write_eye_uvs(raw,name,hd,ha,new_indices,vertices,authored_uvs)
+                # Bare eyes and goggle lenses have separate authored UV domains.
+                native_uv_data=None
             def adapter(*_):return hd,ha,deformations,count,[]
             target,added,detail=fix_model(raw,name,name,{},new_indices,vertices,retarget_fn=adapter,
                  eye_fn=lambda _:high_eyes,native_eye_data=native_uv_data,eye_slot=ids[0]//2)
             target['tail']=target['tail'][:8]+native['tail'][8:]
             new_indices=np.concatenate([new_indices]+added);updates.append(target)
             report.append(detail|{'nativeEyeIds':ids,'nativeEyeGeometryChannelsTransferred':True,
-                                  'eyeUVCalibration':eye_uv_report})
+                                  'eyeUVCalibration':eye_uv_report,'localSamosClearance':samos_clearance,'nativeSamosSocketRims':samos_socket_rims})
         fixed=raw[:start]+vec(new_indices.astype('<u4').tobytes(),4)+vec(vertices,64)+raw[-2:]
         for target in sorted(updates,key=lambda x:x['start'],reverse=True):
             fixed=fixed[:target['start']]+serialize(target)+fixed[target['end']:]
         _,check_indices,_,check_vertices=buffers(fixed,names[0][0]);after=np.frombuffer(check_vertices,'u1').reshape(-1,64)
         before=np.frombuffer(original_vertices,'u1').reshape(-1,64)
         assert np.array_equal(check_indices[:len(indices)],indices)
-        assert np.array_equal(before[:,:48],after[:,:48]) and np.array_equal(before[:,56:],after[:,56:])
+        geometric_mask=np.zeros((len(before),48),dtype=bool)
+        geometric_mask[geometric_rows['position'],:12]=True
+        geometric_mask[geometric_rows['normal'],16:28]=True
+        assert np.array_equal(before[:,:48][~geometric_mask],after[:,:48][~geometric_mask])
+        assert np.array_equal(before[:,56:],after[:,56:])
         compress(WORK/f'{archive}-faces.fr3',fixed)
     (WORK/'native-faces-report.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

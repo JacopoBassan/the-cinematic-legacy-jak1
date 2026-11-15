@@ -349,14 +349,15 @@ def remap_material_joints(doc, accessor, material_name, mapping):
 
 
 def restore_native_pants_rig(output, native_path):
-    """Retain Jak 1's independent trouser knees without changing body joints."""
+    """Retain Jak 1's independent trouser legs without changing body joints."""
     from retarget_glb import load
     ld, _, la = load(native_path)
     hd, binary, ha = load(output)
     native_names = [ld['nodes'][i]['name'] for i in ld['skins'][0]['joints']]
     assert [hd['nodes'][i]['name'] for i in hd['skins'][0]['joints']] == native_names
     assert np.array_equal(la(ld['skins'][0]['inverseBindMatrices']), ha(hd['skins'][0]['inverseBindMatrices']))
-    mapping = {native_names.index(side+'knee'): native_names.index('pants'+side+'knee') for side in ['L', 'R']}
+    mapping = {native_names.index(side+part): native_names.index('pants'+side+part)
+               for side in ['L', 'R'] for part in ['thigh', 'knee']}
     native = next(p for p in ld['meshes'][0]['primitives'] if ld['materials'][p['material']]['name'] == 'bam-cotton-pants')
     native_joints = la(native['attributes']['JOINTS_0'])
     native_weights = la(native['attributes']['WEIGHTS_0'])
@@ -370,11 +371,158 @@ def restore_native_pants_rig(output, native_path):
     old = ha(primitive['attributes']['JOINTS_0'])
     new, weights = replacements[part]
     counts = {native_names[source]: int(np.any((old[used] == source) & (weights[used] > 0), axis=1).sum()) for source in mapping}
-    assert counts == {'Lknee': 87, 'Rknee': 102}, 'Cinematic trouser influence layout changed'
+    assert counts == {'Lthigh': 125, 'Lknee': 87, 'Rthigh': 136, 'Rknee': 102}, 'Cinematic trouser influence layout changed'
     write_skin_accessors(output, hd, binary, replacements)
     return dict(material='jak-orig-pants', part=part,
         jointRemapping={native_names[a]: native_names[b] for a, b in mapping.items()},
         driverVertices=counts, changedVertices=int(np.any(new[used] != old[used], axis=1).sum()),
-        unchanged=['thigh influences', 'skin legs', 'feet', 'all other materials',
+        unchanged=['hip influences', 'skin legs', 'feet', 'all other materials',
                    'all geometry and morph targets', 'all skin weight values', 'native bind matrices'],
-        reason='Native body knees and trouser knees animate independently during attacks')
+        reason='Native body and trouser thigh/knee controls animate independently')
+
+
+def restore_native_pack_buckle_rig(output, native_path):
+    """Bind the rear metal buckle to the same rigid chest driver as Jak 1."""
+    from retarget_glb import load
+    ld, _, la = load(native_path)
+    hd, binary, ha = load(output)
+    names = [ld['nodes'][i]['name'] for i in ld['skins'][0]['joints']]
+    assert [hd['nodes'][i]['name'] for i in hd['skins'][0]['joints']] == names
+    chest = names.index('chest')
+
+    def buckle(doc, accessor, material):
+        parts = [i for i, p in enumerate(doc['meshes'][0]['primitives'])
+                 if doc['materials'][p['material']]['name'] == material]
+        assert len(parts) == 1, 'Buckle material ownership changed'
+        part = parts[0]
+        primitive = doc['meshes'][0]['primitives'][part]
+        adjacent = {}
+        for triangle in accessor(primitive['indices']).reshape(-1, 3):
+            vertices = [int(v) for v in triangle]
+            for vertex in vertices:
+                adjacent.setdefault(vertex, set()).update(vertices)
+        positions = accessor(primitive['attributes']['POSITION'])
+        components = []
+        pending = set(adjacent)
+        while pending:
+            todo = [pending.pop()]
+            component = set(todo)
+            while todo:
+                for vertex in adjacent[todo.pop()] - component:
+                    component.add(vertex)
+                    pending.discard(vertex)
+                    todo.append(vertex)
+            used = np.asarray(sorted(component))
+            if len(used) == 8 and positions[used, 2].max() < -.35 and positions[used, 1].min() > 1.9:
+                components.append(used)
+        assert len(components) == 1, 'Rear buckle topology or bounds changed'
+        return part, primitive, components[0], positions[components[0]]
+
+    _, native, native_used, native_positions = buckle(ld, la, 'bam-armor-envmap')
+    native_joints = la(native['attributes']['JOINTS_0'])[native_used]
+    native_weights = la(native['attributes']['WEIGHTS_0'])[native_used]
+    assert np.allclose(np.where(native_joints == chest, native_weights, 0).sum(1), 1.0)
+    part, primitive, used, positions = buckle(hd, ha, 'jak-orig-armor-envmap')
+    distances = np.linalg.norm(positions[:, None] - native_positions[None, :], axis=-1)
+    error = float(max(distances.min(0).max(), distances.min(1).max()))
+    assert error < .005, 'Rear buckle no longer matches inspected native component'
+    joints = ha(primitive['attributes']['JOINTS_0'])
+    weights = ha(primitive['attributes']['WEIGHTS_0'])
+    active = {names[i] for i in np.unique(joints[used][weights[used] > 1e-7])}
+    assert active == {'LshoulderPad', 'upper_body', 'packStrapTop'}, 'Donor buckle rig changed'
+    joints[used] = 0
+    weights[used] = 0
+    joints[used, 0] = chest
+    weights[used, 0] = 1.0
+    write_skin_accessors(output, hd, binary, {part: (joints, weights)})
+    return dict(material='jak-orig-armor-envmap', part=part, vertices=used.tolist(),
+        nativeDriver='chest', nativeComponentVertices=len(native_used),
+        maxNativeComponentDistanceMeters=error,
+        unchanged=['all geometry', 'normals', 'UVs', 'materials', 'topology',
+                   'morph targets', 'other metal components', 'native bind matrices'],
+        reason='The native rear buckle is rigid on the chest; donor shoulder-pad and strap influences deform it')
+
+
+def restore_native_tunic_panel_rig(output, native_path):
+    """Restore native cloth fields at the cinematic panel's trouser crossing."""
+    from retarget_glb import load
+    ld, _, la = load(native_path)
+    hd, binary, ha = load(output)
+    names = [ld['nodes'][i]['name'] for i in ld['skins'][0]['joints']]
+    assert [hd['nodes'][i]['name'] for i in hd['skins'][0]['joints']] == names
+    assert np.array_equal(la(ld['skins'][0]['inverseBindMatrices']), ha(hd['skins'][0]['inverseBindMatrices']))
+    low = [p for p in ld['meshes'][0]['primitives'] if ld['materials'][p['material']]['name'] == 'bam-coat-wrinkles']
+    high = [(i, p) for i, p in enumerate(hd['meshes'][0]['primitives']) if hd['materials'][p['material']]['name'] == 'jak-orig-skirt']
+    assert len(low) == len(high) == 1 and high[0][0] == 20
+    part, primitive = high[0]
+    positions = ha(primitive['attributes']['POSITION'])
+    anchors = {339: [-.22966143, 1.21635509, -.09866936],
+               359: [-.25688058, 1.21465385, .02041435],
+               360: [-.24497220, 1.27589691, .02381674],
+               361: [-.22625905, 1.28100049, -.09016338]}
+    assert len(positions) == 435
+    groups = {}
+    for seed, expected in anchors.items():
+        assert np.allclose(positions[seed], expected, atol=1e-7, rtol=0)
+        groups[seed] = np.flatnonzero(np.linalg.norm(positions-positions[seed], axis=1) < 1e-7)
+    assert {k: v.tolist() for k, v in groups.items()} == {339: [339, 416], 359: [359, 428], 360: [360], 361: [361]}
+    source = low[0]
+    source_positions = la(source['attributes']['POSITION'])
+    source_indices = la(source['indices']).reshape(-1, 3)
+    selected = np.flatnonzero(source_positions[source_indices, 1].max(axis=1) < 1.66)
+    triangles = source_indices[selected]
+    # The existing exhaustive float64 routine resolves ties in native triangle
+    # order. Keep this four-point transfer independent of centroid-query order.
+    nearest, barycentric, distance = closest_upper_tooth_surface(
+        positions[list(anchors)], source_positions[triangles])
+    assert np.max(distance) < .03
+    source_joints, source_weights = la(source['attributes']['JOINTS_0']), la(source['attributes']['WEIGHTS_0'])
+    joints, weights = ha(primitive['attributes']['JOINTS_0']), ha(primitive['attributes']['WEIGHTS_0'])
+    result_joints, result_weights = joints.copy(), weights.copy()
+    def field(j, w):
+        result = np.zeros(len(names), dtype=np.float64)
+        for joint, weight in zip(j, w):
+            result[int(joint)] += float(weight)
+        return result
+    rows = []
+    for row, (seed, duplicates) in enumerate(groups.items()):
+        native_triangle = triangles[nearest[row]]
+        transferred = sum(field(source_joints[v], source_weights[v])*fraction
+                          for v, fraction in zip(native_triangle, barycentric[row]))
+        transferred /= transferred.sum()
+        native_field = transferred.copy()
+        # Independent native trouser-knee motion needs a small local clearance.
+        # Keep the donor surface and its welded UV copies unchanged in bind pose.
+        clearance_adjustment = {339: .02710, 359: -.00387, 360: -.03572, 361: 0.0}[seed]
+        assert abs(clearance_adjustment) <= .036
+        transferred[names.index('hips')] += clearance_adjustment
+        transferred[names.index('shirtRthigh')] -= clearance_adjustment
+        assert np.isfinite(transferred).all() and (transferred >= 0).all()
+        assert abs(transferred.sum()-1) < 1e-12
+        active = np.flatnonzero(transferred > 1e-7)
+        assert {names[j] for j in active} == {'hips', 'shirtRthigh'}
+        original_field = field(joints[seed], weights[seed])
+        assert all(np.allclose(field(joints[v], weights[v]), original_field, atol=1e-7, rtol=0)
+                   for v in duplicates), 'Coincident cloth seam already has unequal skin fields'
+        for vertex in duplicates:
+            # Preserve native column order and add the newly active hips driver.
+            order = list(dict.fromkeys([int(j) for j in joints[vertex] if j in active] + active.tolist()))
+            result_joints[vertex], result_weights[vertex] = 0, 0
+            for column, joint in enumerate(order):
+                result_joints[vertex, column], result_weights[vertex, column] = joint, transferred[joint]
+        rows.append(dict(seed=seed, vertices=duplicates.tolist(), nativeTriangle=int(selected[nearest[row]]),
+                         nativeVertices=native_triangle.tolist(), barycentric=barycentric[row].tolist(),
+                         distanceMeters=float(distance[row]),
+                         nativeField={names[j]: float(native_field[j]) for j in active},
+                         clearanceHipAdjustment=clearance_adjustment,
+                         field={names[j]: float(transferred[j]) for j in active}))
+    changed = np.flatnonzero(np.any(result_joints != joints, axis=1) | np.any(result_weights != weights, axis=1))
+    assert changed.tolist() == [339, 359, 360, 361, 416, 428]
+    assert np.allclose(result_weights.sum(axis=1), 1, atol=1e-6)
+    assert ((result_weights > 1e-7).sum(axis=1) <= 3).all()
+    write_skin_accessors(output, hd, binary, {part: (result_joints, result_weights)})
+    return dict(part=part, material='jak-orig-skirt', vertices=changed.tolist(),
+                nativeMaterial='bam-coat-wrinkles', correspondence=rows,
+                reason='Native hip-to-shirt-thigh cloth transition with bounded clearance for independent trouser-knee motion',
+                unchanged=['geometry', 'normals', 'UVs', 'morphs', 'materials', 'topology',
+                           'all other skin rows', 'collar', 'waist and hem boundary positions'])

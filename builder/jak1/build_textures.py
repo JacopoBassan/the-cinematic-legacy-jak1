@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from jak1_paths import DATA,WORK,RELEASE
 os.environ['CINEMATIC_BUILD_WORK']=str(WORK)
-sys.path.insert(0,str(RELEASE/'stages'))
+sys.path[:0]=[str(RELEASE),str(RELEASE/'stages')]
 from fr3_models import Reader,decompress,compress
 from inspect_transformations import textures
 
@@ -18,7 +18,11 @@ def main():
     for archive in ('GAME','village1'):
         donors+=textures(decompress(WORK/f'{archive}-original.fr3'))[0]
     for archive in ('GAME','village1'):
-        raw=decompress(WORK/f'{archive}-faces.fr3');target,end=textures(raw);restored=[]
+        raw=decompress(WORK/f'{archive}-faces.fr3');socket_report=None;socket_texture_report=None
+        if archive=='village1':
+            from native_samos import fit_samos_socket_colors
+            raw,socket_report=fit_samos_socket_colors(raw,WORK/'rig-prototypes/sage-lod0.glb')
+        target,end=textures(raw);restored=[]
         for t in target:
             if t['page']!='custom-level':continue
             matches=[s for s in donors if (s['name'],s['width'],s['height'])==(t['name'],t['width'],t['height'])
@@ -26,6 +30,10 @@ def main():
             variants={bytes(s['pixels']) for s in matches}
             if len(variants)==1:t['pixels']=next(iter(variants))
             elif t['name']!='white':raise ValueError(('Missing or ambiguous donor texture',t['name']))
+            if archive=='village1' and t['name']=='samos-face':
+                from native_samos import correct_samos_socket_texture
+                if socket_texture_report is not None:raise ValueError('Duplicate Samos face texture')
+                socket_texture_report=correct_samos_socket_texture(t)
             restored.append(t['name']);t['name']='j1-cinematic/'+t['name']
         r=Reader(raw,2);r.take(r.num('Q'));out=bytearray(raw[:r.pos])+struct.pack('<Q',len(target))
         for t in target:
@@ -36,6 +44,9 @@ def main():
         out+=raw[end:];compress(WORK/f'{archive}-cinematic.fr3',bytes(out))
         assert textures(bytes(out))[0]==target
         report[archive]={'restoredTextures':restored,'nativeGlobalNamesPreserved':True}
+        if archive=='village1':
+            if socket_texture_report is None:raise ValueError('Missing Samos face texture')
+            report[archive]['samosSocketCorrection']={'vertexColors':socket_report,'texture':socket_texture_report}
     (WORK/'texture-report.json').write_text(json.dumps(report,indent=2)+'\n')
     print({k:len(v['restoredTextures']) for k,v in report.items()})
 

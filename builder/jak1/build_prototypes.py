@@ -135,10 +135,32 @@ def main():
         verification=verify(lp,hp,dest)
         corrections={}
         if label=='Jak':
-            from native_face_rig import restore_native_face_rig,restore_native_pants_rig
+            from native_face_rig import restore_native_face_rig,restore_native_pants_rig,restore_native_pack_buckle_rig,restore_native_tunic_panel_rig
             corrections['nativeFacialRig']=restore_native_face_rig(dest,lp)
             corrections['nativeClothRig']=restore_native_pants_rig(dest,lp)
+            corrections['nativePackBuckleRig']=restore_native_pack_buckle_rig(dest,lp)
+            corrections['nativeTunicPanelRig']=restore_native_tunic_panel_rig(dest,lp)
             verification=verify(lp,hp,dest)
+            from selective_pants import fit_cinematic_pants
+            corrections['cinematicPantsFit']=fit_cinematic_pants(dest)
+            from opening_pants_fit import fit_opening_pants,fit_walking_pants,fit_jump_pants
+            corrections['openingPantsFit']=fit_opening_pants(dest)
+            corrections['walkingPantsFit']=fit_walking_pants(dest)
+            corrections['jumpPantsFit']=fit_jump_pants(dest)
+            from native_outfit import make as transfer_native_outfit
+            fitted=dest.with_name('eichar-native-outfit-staged.glb')
+            corrections['nativeOutfit']=transfer_native_outfit(lp,dest,fitted,output/'native-outfit-report.json')
+            os.replace(fitted,dest)
+            verification.update(sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),
+                triangles=verification['triangles']-len(corrections['cinematicPantsFit']['removedTriangles'])-len(corrections['jumpPantsFit']['removedTriangles']),
+                exactGeometryUVTopologyAndMorphs=False,
+                unchangedSurfacesUVTopologyAndMorphsExact=False,
+                geometryProvenance='Cinematic surfaces with native clothing textures and guarded local pants fit')
+        if label=='Samos':
+            from native_samos import restore_native_samos_face
+            corrections['nativeSamosFace']=restore_native_samos_face(dest,lp)
+            verification=verify(lp,hp,dest)
+            verification.update(geometryProvenance='Exact cinematic Samos prototype; native skin field on central hanging beard')
         if label=='Keira':
             corrections=correct_keira_accessories(dest)
             verification=verify_keira_corrections(lp,hp,dest)

@@ -17,7 +17,8 @@ from inspect_transformations import textures
 
 
 def restore(raw, cinematic_raw, glb, *, name, donor_name, expected_triangles,
-            omitted_primitive_indices=()):
+            omitted_primitive_indices=(), triangle_overrides=None):
+    triangle_overrides = triangle_overrides or {}
     target = model(raw, name)
     donor = model(cinematic_raw, donor_name)
     assert len(target['effects']) == 2, 'Expected the original two importer groups'
@@ -66,7 +67,12 @@ def restore(raw, cinematic_raw, glb, *, name, donor_name, expected_triangles,
             primitive = primitives[primitive_index]
             assert primitive['material'] == source_primitive_index
             triangle_count = doc['accessors'][primitive['indices']]['count'] // 3
-            assert triangle_count == DRAW.unpack(old_draw)[5]
+            authored_count = DRAW.unpack(old_draw)[5]
+            if source_primitive_index in triangle_overrides:
+                expected_old, expected_new = triangle_overrides[source_primitive_index]
+                assert authored_count == expected_old and triangle_count == expected_new
+            else:
+                assert triangle_count == authored_count
             draw = bucket['draws'][cursors[bucket_index]]
             cursors[bucket_index] += 1
             assert DRAW.unpack(draw)[5] == triangle_count and DRAW.unpack(draw)[6] == 1

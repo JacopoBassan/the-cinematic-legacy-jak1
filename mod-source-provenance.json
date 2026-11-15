@@ -15,29 +15,33 @@
     "LauncherExtractor.cs": "baed2a1f3f4e6b112619943fa5dcc933dc6061f27dffa54ce0ac04f2045b3cb0",
     "LauncherExtractor.sh": "982885617e5c23f57256cae9184a7c19c19f18f2c0c48cb16b7a99ea35e06f05",
     "README.md": "dde474b109ca646c5a3e5b91bd7256f01756b0abc602e03622a3462ae047f9df",
-    "artwork/jak1.png": "27a8ad109fa252af7471ddcfe8f041d42e90ff9ff0987d9af84f1b66b4210464",
+    "artwork/jak1.png": "d659a52e3ba43d776c4a2b05c05642c459ccc60dd135fb7e5b1858bcfc6beb9f",
     "game-config.json": "d296314ffe339d5714eda1434cd014a0cc8a511ac8682ddec79ed43bf9155c96",
     "game-configs/jak1.json": "d296314ffe339d5714eda1434cd014a0cc8a511ac8682ddec79ed43bf9155c96",
     "game_config.py": "ea4169d4986352f9168cc7603f80bcf3bc0e278a59e2bd948aff737b33226304",
     "install.py": "0c3021806db97912d769cab22b9b5c547e3542fd71a2c5bc2b269f07543680c9",
-    "jak1/build_faces.py": "a41b8ab3a4caced8ebcdba83d410af210f81d8bcc87025bbb26ed203bb471570",
-    "jak1/build_materials.py": "6a923ab934e48d1a69d4b1cb9072f0f4e764e1523a826bd5698e97f2156d0ccf",
-    "jak1/build_prototypes.py": "5e33f411cb42cf98da9ca41015f947de219ad7fc52e5a34a55c3e45d4d823e10",
-    "jak1/build_release.py": "9d4aadecf13ba3723568ac10087662bc3705e6a0b4a9ab430ee1794d9e00d42f",
-    "jak1/build_textures.py": "282fff2f56c2fd86d85cef515460135aad1f74e6dcdd555bb8e010bba1a7d44d",
-    "jak1/compatibility.json": "d3f373a8fb493baab048810ed5568b369fd44603b339a1715568496453ddffec",
+    "jak1/build_faces.py": "4c468dd97291829d1571a8549bd19d06558d2f9507822b9d54a53607e4e49302",
+    "jak1/build_materials.py": "89c4863e3f2f8163e7a0b614933d13fc71bd6febd2556fcb251053e514783fca",
+    "jak1/build_prototypes.py": "2849e504b29e7572f40715bf7040e494ec6e6422c5c1bc29b15a454144179348",
+    "jak1/build_release.py": "2d67c129413f17132d623c1f18cdedb833958d429a982e42f2cf1e5eb9de5f35",
+    "jak1/build_textures.py": "5616e6d725dd9ed4f770dac1431fdd0ef280284e19a923d65dfbaee2793ac6e5",
+    "jak1/compatibility.json": "e54239c02abbe2ff725e8c65c4b26914c97a1967550aae9cfbfb397031a470c7",
     "jak1/eye_alignment.py": "fa8ccfbaf9d48f74cb3d00d78fb6f5bc8cf684668488f6ae537f45cf59ae73ac",
     "jak1/fit_faces.py": "caca9acfafd6e5e3f55ba8d97293d4eeb31bcb8643576c77ba0994c7d90b6145",
     "jak1/jak1_paths.py": "78f97414285122e6f16ae1f724fc7479d83d7e7af53f8c7857bcffd1546815f4",
     "jak1/keira_feet.py": "8c5e742e1626d0187d715d9814e0d18811b5d7a35a59429badb93d1c522804e7",
-    "jak1/native_face_rig.py": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
+    "jak1/native_face_rig.py": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
     "jak1/native_io.py": "a04fb0f733b03d142d3661880845074d0f5775c1a7c15f36c6588c3ce762ed50",
     "jak1/native_jaw.py": "add76e7a9eea918eb82917702b755f125f10f59236144abc78ef6c25b19877da",
+    "jak1/native_outfit.py": "96ffca6439da65ced508fd95fc71df3af9b52d6a078e30e84c79e136e546862b",
+    "jak1/native_samos.py": "4b7f0c1c6e58531fba08cf4b959e6a4080aeb60599d7e8e91c1cf4566007e033",
+    "jak1/opening_pants_fit.py": "597200ba9b09554c93f8b46b267a2b9f032f73d3636e7b499da2d7c432d42cf7",
     "jak1/patch_runtime.py": "46dce8d4eac9cffdadf5873676db00604e5cb6a0c9edb88e249838dd03d943fb",
     "jak1/refit_keira_cuffs.py": "f23d3d00e782fed8e817e3177706d47364f5029db72401bb71bd67993d2ec36f",
     "jak1/rig_validation.py": "e91778ffb3f88e7c9dbf019269e221a5ba9578f588b7fafaeadbaf831a9cd5ce",
+    "jak1/selective_pants.py": "dceaa75ffd42bf561c6bfb833d087e1bb8b5dd73297b386b6d01d9198011ee28",
     "jak1/verify_import.py": "4776d45f2c45047d66e09e000892590eaaf97ac18741b80b3d065e919ff5b767",
-    "launcher_install.py": "ff00ca63216104fcd9d62648b48eaa4848062a8c8d7606235c1fd0b1a566dad7",
+    "launcher_install.py": "023738a9aa9636fd40019a80b683b244cc85b8d2fa20cbecc4c7a9ada8cc9e7e",
     "licenses/OpenGOAL-ISC.txt": "64983c21481eeab85e9df874e4b452bf6df9005bb5f422fb154705a9931ece56",
     "package_launcher.py": "7c4c6d1b62423acf05fcc5bb9d4dc5926041fadda5e336314700baea5c182ce3",
     "package_posix.py": "7f9074fccdf2d94305744a283701586cd13ecc743fc4c2fd302bce4b56173e17",
@@ -49,15 +53,15 @@
     "requirements.txt": "2021454246309035e646111c85320a015f5e1061a0c44e76edc9534512256b2d",
     "retarget_glb.py": "7e9799fa6c36d8fbbcc1ee95fb9401224a7a0c0c959b057b75bb17ad3bc259ab",
     "runtime_utils.py": "4aa4428c983fc27bf7708b11ec61941525a45b26ed4dbe3fd1b53a59e3788105",
-    "source-files.json": "397f7272a908ed5b8384525937f2d19af2afb2e7610d814b2fbd7aac535bb1f8",
-    "stages/dax_effects.py": "572b8dd9cd287080555b8900b590ec09b07b8cfb53bc25a12024c1bcd93ee58f",
+    "source-files.json": "ba07827c33d9adf0484540738d1a0a479d2af87216eae00e4b8ee0dfe23634e3",
+    "stages/dax_effects.py": "fdd626f923231f3b11f50f1fece32f47916fef5c98f5a2aa824fc332133cb0c1",
     "stages/fix_faces.py": "3c82be9f9fc6d4f8e2a4e78d9c6034391524871cacd50c4f8d556971fe1c2755",
     "stages/fr3_models.py": "caa9b188a91854fd6f7e4fd093a0526761ec0f5bf48e2b35bc7c4023f288b8ef",
     "stages/inspect_faces.py": "036523031b4bab2b75901ecfd1758a3a2908432439dee64454ef5161c16ac187",
     "stages/inspect_transformations.py": "e96f5d9fb4383b310a872649e2678803c0da9f24b9590d8ccc3117bee8e83ffd"
   },
   "artwork": {
-    "sha256": "27a8ad109fa252af7471ddcfe8f041d42e90ff9ff0987d9af84f1b66b4210464",
+    "sha256": "d659a52e3ba43d776c4a2b05c05642c459ccc60dd135fb7e5b1858bcfc6beb9f",
     "dimensions": [
       1024,
       576
@@ -69,8 +73,8 @@
       676
     ],
     "captureHashes": {
-      "original": "7f5d32dc3e0dd59d45e855c9727f561d77430d4758c5a32b9b333f33d89de8e2",
-      "cinematic": "d4019dfdac625721944abb90a93dad4cb1a0ecb2dcd21637b8c3b343de1b1a94"
+      "original": "9986a477023d66a1058a53711d542632e1333041a42097dbae3db62f5621caa4",
+      "cinematic": "1b364b28580353e7f981b86527b63d5a729d10d429749dad28690b53ada7e46f"
     },
     "panelsMatchSourcePixelsExactly": true,
     "method": "Direct screenshot crops and placement; lossless PNG",
@@ -80,14 +84,14 @@
     "captureBuild": {
       "openGoalVersion": "v0.3.9",
       "platform": "windows-x64",
-      "rigSourceSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c",
-      "jakPrototypeSha256": "53d9a448ae32fe110266cac817b73c5ff23bdeacae093a1ec72e8cf895fc8754",
-      "cinematicGameFr3Sha256": "7637993babdb82ed57a589e128a072c1eadc4fe762f875a5ca78149af52d0cbf",
-      "originalGameFr3Sha256": "77cd0ca99aa421dec50d69dd58b282a624b3be0ca27510900e59dc527652bb34"
-    }
+      "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
+      "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
+      "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
+    },
+    "timeOfDay": "17:00"
   },
   "windowsMouthFix": {
     "commit": "e5fa25c5144433cd005c40608c7b4d2f0585164e",
-    "fileSha256": "681120ec473be8a681a1d6616fa6f23bd4ba3773f89279333c99c0a7ae30849c"
+    "fileSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687"
   }
 }

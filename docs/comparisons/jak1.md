@@ -6,17 +6,19 @@ Original left, Cinematic right. In-game screenshots.
 
 ## Jak
 
+Uses the original gameplay clothing and accessory textures.
+
 **Front**
 
-![Jak, Front: Original left, Cinematic right](jak1/jak-front-ae65be5000ef.webp)
+![Jak, Front: Original left, Cinematic right](jak1/jak-front-467c555b9af9.webp)
 
 **Side**
 
-![Jak, Side: Original left, Cinematic right](jak1/jak-side-43dbf956e937.webp)
+![Jak, Side: Original left, Cinematic right](jak1/jak-side-1dec0a2f1ff8.webp)
 
 **Back**
 
-![Jak, Back: Original left, Cinematic right](jak1/jak-back-dfd90323530d.webp)
+![Jak, Back: Original left, Cinematic right](jak1/jak-back-ced1a3debb85.webp)
 
 ## Daxter
 
@@ -28,9 +30,11 @@ Original left, Cinematic right. In-game screenshots.
 
 **Front**
 
-![Samos, Front: Original left, Cinematic right](jak1/samos-front.jpg)
+![Samos, Front: Original left, Cinematic right](jak1/samos-front-a4dcf5ae91fe.webp)
 
 ## Keira
+
+Keeps her original feet and open sandals.
 
 **Front**
 

@@ -52,13 +52,13 @@
       "decodedSourcePixelsPreserved": true
     },
     {
-      "path": "comparisons/jak1/jak-front-ae65be5000ef.webp",
-      "sha256": "ae65be5000ef1306007f30d5a9a0dedc890335ca6b0c1304b130f7d926288366",
+      "path": "comparisons/jak1/jak-front-467c555b9af9.webp",
+      "sha256": "467c555b9af9691b2bf6996f0a9ae97ad8df4faeace64ea88f0f0f7462a896c7",
       "dimensions": [
         892,
         868
       ],
-      "sourceSha256": "ae65be5000ef1306007f30d5a9a0dedc890335ca6b0c1304b130f7d926288366",
+      "sourceSha256": "467c555b9af9691b2bf6996f0a9ae97ad8df4faeace64ea88f0f0f7462a896c7",
       "crop": null,
       "decodedSourcePixelsPreserved": true
     },
