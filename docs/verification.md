@@ -1,6 +1,6 @@
 # Jak and Daxter verification
 
-Release `0.3.1` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
+Release `0.3.3` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
 
 ## Source checks
 
@@ -32,7 +32,7 @@ Release assembly passed with both builder and standard archive names. Checks cov
 
 The builder produces replacements for Jak, Daxter, Samos and Keira. It checks geometry, facial buffers, textures, material flags and the scoped bones-object change in GAME.CGO.
 
-The builder checks original tools, disc revisions and consumed assets before conversion. It validates the generated model data and records payload checksums.
+For both discs, the builder uses OpenGOAL’s `buildinfo.json` to select the revision. For older extractions, it reads the `BOOT2` entry in `SYSTEM.CNF`. It checks the original tools, selected executables and required archives before conversion. It validates the generated model data and records payload checksums.
 
 Complete Windows EU and USA Black Label conversions passed on 2026-11-15 with the clothing, cloth-fit and Samos corrections. All four generated character prototypes match between regions. GAME.fr3 decodes identically, and the village character models, vertex and index data, morph buffers and textures match. Regional level data outside those character sections can differ. USA gameplay was not tested.
 

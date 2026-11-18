@@ -87,9 +87,12 @@ class BuilderTests(unittest.TestCase):
             original = root/'source'
             original.mkdir()
             (original/'SYSTEM.CNF').write_bytes(b'untouched input')
-            profile = dict(inputs={'SYSTEM.CNF': 'already verified'}, elfHash=123456789)
+            (original/'SCUS_972.65').write_bytes(b'verified executable')
+            profile = dict(inputs={'SCUS_972.65': 'already verified'}, elfHash=123456789)
             staged = builder.stage_disc(original, root/'staged', profile, 'SCUS-97265')
-            self.assertEqual((staged/'SYSTEM.CNF').read_bytes(), b'untouched input')
+            self.assertFalse((staged/'SYSTEM.CNF').exists())
+            self.assertEqual((original/'SYSTEM.CNF').read_bytes(), b'untouched input')
+            self.assertEqual((staged/'SCUS_972.65').read_bytes(), b'verified executable')
             self.assertEqual(json.loads((staged/'buildinfo.json').read_text()),
                              [dict(serial='SCUS-97265', elf_hash=123456789)])
             self.assertFalse((original/'buildinfo.json').exists())
@@ -147,7 +150,8 @@ class BuilderTests(unittest.TestCase):
             root = Path(folder)
             for role, serial in [('target', 'SCUS_971.24'), ('donor', 'SCES_516.08')]:
                 (root/role).mkdir()
-                (root/role/'SYSTEM.CNF').write_text('BOOT2=cdrom0:\\'+serial+';1')
+                (root/role/'SYSTEM.CNF').write_bytes(
+                    ('comment = SCUS_000.00\r\n\tboot2 = cdrom0:\\'+serial.lower()+';1 \r\n').encode())
                 (root/role/'input').write_bytes(role.encode())
             (root/'tool').write_bytes(b'tool')
             config = dict(game='jak1', openGoalVersion='test',
@@ -159,9 +163,19 @@ class BuilderTests(unittest.TestCase):
                 donorProfiles={'SCES-51608': {'elfHash': 2, 'inputs': {'input': builder.sha(root/'donor/input')}}})
             selected = builder.preflight(root, root, config)
             self.assertEqual(selected['donorSerial'], 'SCES-51608')
+            for role, serial, elf_hash in [('target', 'SCUS-97124', 1), ('donor', 'SCES-51608', 2)]:
+                disc = root/role
+                (disc/'SYSTEM.CNF').unlink()
+                (disc/'buildinfo.json').write_text(json.dumps([{'serial': serial, 'elf_hash': elf_hash}]))
+            self.assertEqual(builder.preflight(root, root, config)['targetExecutable'], 'SCUS_971.24')
             (root/'donor/input').write_bytes(b'modified')
             with self.assertRaisesRegex(ValueError, 'modified donor'):
                 builder.preflight(root, root, config)
+            (root/'donor/input').write_bytes(b'donor')
+            (root/'donor/buildinfo.json').write_text('[{"serial":"SCES-51608","elf_hash":3}]')
+            with self.assertRaisesRegex(ValueError, 'donor executable revision'):
+                builder.preflight(root, root, config)
+            (root/'donor/buildinfo.json').unlink()
             (root/'donor/SYSTEM.CNF').write_text('BOOT2=cdrom0:\\SCUS_000.00;1')
             with self.assertRaisesRegex(ValueError, 'Unsupported donor'):
                 builder.preflight(root, root, config)

@@ -1,6 +1,6 @@
 {
   "game": "jak1",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "openGoalVersion": "v0.3.9",
   "platform": "windows-x64",
   "supportedSerials": [
@@ -48,7 +48,6 @@
         "CGO/GAME.CGO": "7dfb0b767e7cdc6e2a6aa47b0647b83aa918613f3d12d50a4fff908c5e689c4a",
         "CGO/COMMON.CGO": "61041f72a795008bed282ff0899f4a7ccceca03ebc18331aef5ff07c80513258",
         "DGO/VI1.DGO": "14c2a62d2fd4eed903347b9802388cfe095232869075d604e3c3876d45774d49",
-        "SYSTEM.CNF": "5c7b6a7394cb32e67509ea06dc637c761dd8e288cf45de39f452246fc15db774",
         "SCES_503.61": "ad5b47891e4fdfd95d349e81b59df48eed5fa195053c49520276f09ce54aa7ba",
         "DGO/BEA.DGO": "8c6aee6d751b1fb04264b68845ec4ea289db936ffa9a413e2629b3657b818acb",
         "DGO/CIT.DGO": "88d5315e4ebe2dd72aa7859dffcf2e97739639bb56391d8ce1842f1b04d45e2a",
@@ -92,7 +91,6 @@
         "CGO/GAME.CGO": "0960b6e690a738717ca5d00c0c978150e4709ef8dbb379af0788eba59d36e840",
         "CGO/COMMON.CGO": "61041f72a795008bed282ff0899f4a7ccceca03ebc18331aef5ff07c80513258",
         "DGO/VI1.DGO": "9300242a9ce06f48ca705b495b2fd9502457bdf42a4bb5e64be0a25a877b38f2",
-        "SYSTEM.CNF": "e8420b6e7550921bf1fb017cfbccb37bd7cca3aead4265f1cfb4f31906069e6f",
         "SCUS_971.24": "b3051491a4f41bd90b345bbd91fe60b4c85f3060bacd0552903645f8d27268d5",
         "DGO/BEA.DGO": "23309b4c20a18bc0db87b41a72635436735712747a56dcd8e2f92609adec4216",
         "DGO/CIT.DGO": "6603a8823cded5956173bfc9cfa3e8f97c33503dfad85350070e78e7a362af3c",
@@ -140,7 +138,6 @@
         "DGO/INTROCST.DGO": "fb983daeb6813f806c06227f67eb5cf542303745ebf7b4ec338fb5144ef70864",
         "DGO/HIPHOG.DGO": "459e67a2adcbea3586522f0cd001594ac89a135c6ee09a6ddc53d5d4ca0b0e0b",
         "DGO/LINTCSTB.DGO": "89250cd42d9187e32b91c36b6275e06cb2101e66fdf883549f65589f6832ae4f",
-        "SYSTEM.CNF": "1bc906a2d51e2e036c7377e8147bc70854874ecc01de5296eea1c8a3da816465",
         "SCES_516.08": "81f3c37d0ce70245794bf441bb0c01841ac4036e2877532b9213575c855a6d92"
       },
       "validation": "Local input hashes verified; donors used successfully in the matching-region complete Jak 1 build",
@@ -154,7 +151,6 @@
         "DGO/INTROCST.DGO": "fb983daeb6813f806c06227f67eb5cf542303745ebf7b4ec338fb5144ef70864",
         "DGO/HIPHOG.DGO": "459e67a2adcbea3586522f0cd001594ac89a135c6ee09a6ddc53d5d4ca0b0e0b",
         "DGO/LINTCSTB.DGO": "89250cd42d9187e32b91c36b6275e06cb2101e66fdf883549f65589f6832ae4f",
-        "SYSTEM.CNF": "05d93668e717d83b08b930a92cf763646c711342152c0b09346f1054797c2666",
         "SCUS_972.65": "fbb80af1e2328629ca66ff21785e59bf7fec34b165b4ff659aff20fa45de7b66"
       },
       "validation": "Local input hashes verified; donors used successfully in the matching-region complete Jak 1 build",

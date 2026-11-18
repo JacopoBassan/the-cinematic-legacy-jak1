@@ -63,17 +63,19 @@ def read_jsonc(path):
 
 def disc_folder(root, game):
     root = Path(root).resolve()
-    if (root/'SYSTEM.CNF').is_file():
+    if (root/'buildinfo.json').is_file() or (root/'SYSTEM.CNF').is_file():
         return root
     return root/'iso_data'/game
 
 
 def serial_for(disc):
-    boot = (disc/'SYSTEM.CNF').read_text()
-    match = re.search(r'([A-Z]{4})[_-](\d{3})\.(\d{2})', boot)
+    boot = (disc/'SYSTEM.CNF').read_text(encoding='utf-8-sig')
+    entries = re.findall(r'(?im)^[ \t]*BOOT2[ \t]*=(.*)$', boot)
+    match = re.fullmatch(r'CDROM0:[\\/]?([A-Z]{4})[_-]([0-9]{3})\.([0-9]{2})(?:;1)?',
+                         entries[0].strip().upper()) if len(entries) == 1 else None
     if not match:
         raise ValueError('Cannot identify the disc executable in SYSTEM.CNF')
-    return match[1]+'-'+match[2]+match[3], match[1]+'_'+match[2]+'.'+match[3]
+    return match[1]+'-'+match[2]+match[3]
 
 
 def resolved_config(data, config):
@@ -83,14 +85,27 @@ def resolved_config(data, config):
     donor = disc_folder(config.get('donorData', data), 'jak2')
     for key, path, profiles in [('target', target, config['regionalProfiles']),
                                  ('donor', donor, config['donorProfiles'])]:
-        if not (path/'SYSTEM.CNF').is_file():
+        disc_metadata = None
+        metadata = path/'buildinfo.json'
+        if metadata.is_file():
+            rows = json.loads(metadata.read_text())
+            if (not isinstance(rows, list) or len(rows) != 1 or not isinstance(rows[0], dict)
+                    or not isinstance(rows[0].get('serial'), str)):
+                raise ValueError(f'Invalid {key} OpenGOAL disc metadata')
+            disc_metadata = rows[0]
+            serial = disc_metadata['serial']
+        elif (path/'SYSTEM.CNF').is_file():
+            serial = serial_for(path)
+        else:
             raise ValueError(f'Missing local {"Jak 1" if key == "target" else "Jak II cinematic donor"} extraction: {path}')
-        serial, executable = serial_for(path)
         if serial not in profiles:
             raise ValueError(f'Unsupported {key} disc revision: {serial}')
+        if disc_metadata is not None and disc_metadata.get('elf_hash') != profiles[serial].get('elfHash'):
+            raise ValueError(f'Unsupported {key} executable revision')
+        prefix, number = serial.split('-')
         result[key+'Disc'] = str(path)
         result[key+'Serial'] = serial
-        result[key+'Executable'] = executable
+        result[key+'Executable'] = f'{prefix}_{number[:3]}.{number[3:]}'
     result['selectedSerial'] = result['targetSerial']
     return result
 
@@ -127,13 +142,6 @@ def preflight(data: Path, tools: Path, config: dict):
         for relative, expected in profile['inputs'].items():
             if not (disc/relative).is_file() or sha(disc/relative) != expected:
                 raise ValueError(f'Unsupported or modified {role} disc input: {relative}')
-        metadata = disc/'buildinfo.json'
-        if metadata.exists():
-            rows = json.loads(metadata.read_text())
-            if not isinstance(rows, list) or len(rows) != 1 or not isinstance(rows[0], dict) or rows[0].get('serial') != config[role+'Serial']:
-                raise ValueError(f'Invalid {role} OpenGOAL disc metadata')
-            if profile.get('elfHash') is not None and rows[0].get('elf_hash') != profile['elfHash']:
-                raise ValueError(f'Unsupported {role} executable revision')
     if config.get('game') != 'jak1' or config['payloadPaths'] != PAYLOAD_PATHS:
         raise ValueError('Jak 1 payload definition differs from the constructor')
     return config
@@ -318,10 +326,8 @@ def build(data: Path, tools: Path, work: Path, output: Path, config: dict):
         work/'02-native-code.log', env)
     shutil.copy2(project/'out/jak1/iso/GAME.CGO', work/'GAME-original.CGO')
     selective = work/'native-rigs'
-    for relative in TARGET_ARCHIVES[:-1]+['SYSTEM.CNF', config['targetExecutable']]:
+    for relative in TARGET_ARCHIVES[:-1]+[config['targetExecutable'], 'buildinfo.json']:
         link_or_copy(disc/relative, selective/relative)
-    if (disc/'buildinfo.json').exists():
-        link_or_copy(disc/'buildinfo.json', selective/'buildinfo.json')
     filtered_village(disc/'DGO/VI1.DGO', selective/'DGO/VI1.DGO', source)
     extract(project, tools, selective, 'jak1', TARGET_ARCHIVES, ['VI1.DGO'], True,
             work/'03-native-rigs.log', env, config)
