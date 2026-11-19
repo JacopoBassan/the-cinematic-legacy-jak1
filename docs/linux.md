@@ -2,7 +2,7 @@
 
 Linux x64 support is experimental. Real Linux launcher import, model conversion and gameplay are not yet validated.
 
-Use `linux-v0.3.4.tar.gz` from [Releases](https://github.com/JacopoBassan/the-cinematic-legacy-jak1/releases) with official OpenGOAL **v0.3.9**. Python and its dependencies are included.
+Use `linux-v0.3.5.tar.gz` from [Releases](https://github.com/JacopoBassan/the-cinematic-legacy-jak1/releases) with official OpenGOAL **v0.3.9**. Python and its dependencies are included.
 
 Supported EU and USA disc revisions are listed in [installation](installation.md). Jak 1 also needs vanilla Jak II in the same launcher. The installer uses the verified source files shipped with OpenGOAL and checks the disc and graphics files from your active game install.
 
