@@ -53,7 +53,8 @@
     "stages/fix_faces.py",
     "stages/fr3_models.py",
     "stages/inspect_faces.py",
-    "stages/inspect_transformations.py"
+    "stages/inspect_transformations.py",
+    "texture_packs.py"
   ],
   "runtimeFiles": [
     "CREDITS.txt",
@@ -97,6 +98,7 @@
     "stages/fix_faces.py",
     "stages/fr3_models.py",
     "stages/inspect_faces.py",
-    "stages/inspect_transformations.py"
+    "stages/inspect_transformations.py",
+    "texture_packs.py"
   ]
 }

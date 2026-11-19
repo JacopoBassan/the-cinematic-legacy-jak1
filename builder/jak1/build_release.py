@@ -20,6 +20,7 @@ HERE = Path(__file__).resolve().parent
 RELEASE = HERE.parent
 sys.path.insert(0, str(RELEASE))
 import platform_tools
+from texture_packs import Fr3, apply_texture_changes, has_replacements, replacement_folder, texture_changes
 PAYLOAD_PATHS = ['data/out/jak1/fr3/GAME.fr3',
                  'data/out/jak1/fr3/village1.fr3',
                  'data/out/jak1/iso/GAME.CGO']
@@ -35,7 +36,7 @@ SOURCE_CLOSURE = ['jak1/build_release.py', 'jak1/compatibility.json',
     'jak1/fit_faces.py', 'jak1/build_faces.py', 'jak1/eye_alignment.py',
     'jak1/native_samos.py', 'jak1/native_outfit.py', 'jak1/selective_pants.py', 'jak1/opening_pants_fit.py',
     'jak1/native_jaw.py', 'jak1/native_face_rig.py', 'jak1/build_textures.py', 'jak1/patch_runtime.py',
-    'retarget_glb.py', 'requirements.txt', 'stages/fr3_models.py',
+    'retarget_glb.py', 'requirements.txt', 'texture_packs.py', 'stages/fr3_models.py',
     'stages/inspect_faces.py', 'stages/fix_faces.py',
     'stages/inspect_transformations.py', 'stages/dax_effects.py']
 
@@ -322,6 +323,14 @@ def build(data: Path, tools: Path, work: Path, output: Path, config: dict):
             work/'01-native.log', env, config, runtime_metadata=True)
     for name in ('GAME', 'village1'):
         shutil.copy2(project/f'out/jak1/fr3/{name}.fr3', work/f'{name}-original.fr3')
+    replacements = replacement_folder(data, 'jak1')
+    pack_changes = {}
+    if has_replacements(replacements):
+        for name in ('GAME', 'village1'):
+            filename = f'{name}.fr3'
+            active = data / 'out/jak1/fr3' / filename
+            pack_changes[filename] = texture_changes(Fr3(work/f'{name}-original.fr3'),
+                                                      Fr3(active), replacements)
     run(compile_command(tools, project, '(make "$OUT/iso/GAME.CGO")', config),
         work/'02-native-code.log', env)
     shutil.copy2(project/'out/jak1/iso/GAME.CGO', work/'GAME-original.CGO')
@@ -361,6 +370,9 @@ def build(data: Path, tools: Path, work: Path, output: Path, config: dict):
         destination = output/relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(work/source_file, destination)
+        if changes := pack_changes.get(destination.name):
+            copied = apply_texture_changes(destination, changes)
+            print(f'Kept {copied} texture pack replacements in {destination.name}', flush=True)
     manifest = dict(schemaVersion=1, game='jak1', version=config['version'],
         openGoalVersion=config['openGoalVersion'], platform=config['platform'],
         displayName='Jak and Daxter: The Cinematic Legacy', author='@jacopobassan',
