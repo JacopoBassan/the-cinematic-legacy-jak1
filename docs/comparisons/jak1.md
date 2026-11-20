@@ -2,7 +2,7 @@
 
 [Overview](../comparisons.md) · [Jak 1](jak1.md) · [Jak II](https://github.com/JacopoBassan/the-cinematic-legacy-jak2/blob/main/docs/comparisons/jak2.md) · [Jak 3](https://github.com/JacopoBassan/the-cinematic-legacy-jak3/blob/main/docs/comparisons/jak3.md)
 
-Original left, Cinematic right. In-game screenshots.
+Original left, Cinematic right. In-game screenshots and labeled textured model renders.
 
 ## Jak
 
@@ -20,11 +20,27 @@ Uses the original gameplay clothing and accessory textures.
 
 ![Jak, Back: Original left, Cinematic right](jak1/jak-back-ced1a3debb85.webp)
 
+**At the Sage’s doorway**
+
+![At the Sage’s doorway. Original left, Cinematic right.](jak1/expressions/jak-doorway.webp)
+
+**Surprised in the Sage’s hut**
+
+![Surprised in the Sage’s hut. Original left, Cinematic right.](jak1/expressions/jak-surprised.webp)
+
 ## Daxter
 
 **Front**
 
 ![Daxter, Front: Original left, Cinematic right](jak1/daxter-front.webp)
+
+**Raised eye · Textured model render**
+
+![Raised eye · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-raised-eye.webp)
+
+**Smile · Textured model render**
+
+![Smile · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-smile.webp)
 
 ## Samos
 

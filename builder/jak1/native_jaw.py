@@ -1,6 +1,7 @@
 """Retain Jak 1 Daxter's lateral jaw channel absent from the donor basis."""
 import json
 import os
+import struct
 import sys
 
 import numpy as np
@@ -33,6 +34,47 @@ def transport_normal(source, deformed_source, destination):
         original = destination[opposite]
         result[opposite] = 2*rotation*np.sum(rotation*original, axis=1)[:, None]-original
     return unit(result)-destination
+
+
+def fit_upper_tooth_clearance(position, normal, triangles, lower, positions, normals):
+    """Keep the upper arcade inside the muzzle when the native jaw slides sideways."""
+    from eye_alignment import move_facial_surface
+
+    # The center stays fixed laterally. Only the end approached by the moving
+    # lip follows that lip inward and back. Lift the upper row enough for the
+    # lower arcade to pass during the combined sideways grin.
+    corner = np.clip((-position[:, 0] - .032) / .062, 0, 1)
+    step = corner[:, None] * np.array([.035, .007, -.024])
+    step[:, 1] += .016
+    step[lower] = 0
+    _, shading = np.unique(np.column_stack((position, normal)), axis=0, return_inverse=True)
+    move_facial_surface(position, normal, triangles, shading, positions, normals, step)
+
+
+def fit_mouth_corner(primitive, accessor, positions, normals):
+    """Keep the upper lining behind the far lip during lateral jaw motion."""
+    from eye_alignment import move_facial_surface
+
+    attributes = primitive['attributes']
+    position = accessor(attributes['POSITION'])
+    normal = accessor(attributes['NORMAL'])
+    triangles = accessor(primitive['indices']).reshape(-1, 3)
+    x, y, z = position.T
+    corner = np.minimum.reduce((
+        (x - .012) / .024, (.149 - x) / .038,
+        (y - 1.016) / .019, (1.072 - y) / .022,
+        (z - .082) / .028, (.190 - z) / .023,
+    )).clip(0, 1)
+    corner = corner * corner * (3 - 2 * corner)
+    # The authored jaw opening marks the lower lip, which needs the full slide.
+    jaw_drop = -accessor(primitive['targets'][0]['POSITION'])[:, 1]
+    upper = 1 - np.clip((jaw_drop - .020) / .025, 0, 1)
+    strength = corner * upper
+    step = np.zeros_like(position)
+    step[:, 0] = -.40 * positions[:, 0] * strength
+    step[:, 1] = -.012 * strength
+    _, shading = np.unique(np.column_stack((position, normal)), axis=0, return_inverse=True)
+    move_facial_surface(position, normal, triangles, shading, positions, normals, step)
 
 
 def apply_native_jaw(lp, la, hp, ha, deformations):
@@ -115,12 +157,12 @@ def apply_native_jaw(lp, la, hp, ha, deformations):
     assert abs(lower_x-.0475119017) < 1e-8 and upper_x == 0
     dp, dn = deformations.get(part, (np.zeros((30, len(positions), 3)), np.zeros((30, len(positions), 3))))
     dp[channel, :, 0] = np.where(lower, lower_x, upper_x)
-    # Rigid translation adds no tooth-normal change. Preserve the authored Y/Z
-    # expression and its authored normals already present in this channel.
+    # The native lower-row translation adds no normal change. Retain its
+    # authored Y/Z expression along with the center of the upper row.
     deformations[part] = (dp, dn)
     parts.append(dict(cinematicPart=part, lowerToothVertices=int(lower[used].sum()),
                       upperToothVertices=int((~lower[used]).sum()),
-                      lowerToothX=lower_x, upperToothX=upper_x, rigidToothTranslation=True))
+                      lowerToothX=lower_x, upperToothCenterX=upper_x, rigidLowerToothTranslation=True))
 
     result_landmarks = []
     for label, li, lv, hi, hv, _, _ in landmarks:
@@ -138,11 +180,219 @@ def apply_native_jaw(lp, la, hp, ha, deformations):
             assert np.array_equal(dp[channel, :, 1:], now_p[channel, :, 1:])
         else:
             assert np.array_equal(dp, now_p) and np.array_equal(dn, now_n)
+    p = hp[15]
+    positions, normals = deformations[15]
+    fit_upper_tooth_clearance(ha(p['attributes']['POSITION']), ha(p['attributes']['NORMAL']),
+                             ha(p['indices']).reshape(-1, 3), lower, positions[channel], normals[channel])
+    positions, normals = deformations[6]
+    fit_mouth_corner(hp[6], ha, positions[channel], normals[channel])
+    fit_signed_mouth(hp, ha, deformations, lower)
+    fit_authored_mouth(hp, ha, deformations, daxter=True)
+    refine_daxter_mouth(hp, ha, deformations)
     return dict(nativeChannel=channel, parts=parts, landmarks=result_landmarks,
+                signedMouthChannels=[1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17],
                 checksPassed=['All five mouth landmark X movements preserved',
-                              'Separate upper/lower tooth ownership', 'Rigid tooth X translation',
-                              'Finite unit normal response', 'Other channels and authored Y/Z preserved'],
+                              'Separate upper/lower tooth ownership',
+                              'Upper tooth corner follows the moving lip',
+                              'Upper mouth lining stays inside the far corner',
+                              'Finite unit normal response'],
                 status='Numerically validated; live expression capture remains required')
+
+
+def fit_signed_mouth(primitives, accessor, deformations, lower_teeth):
+    """Keep the lower teeth inside the closed jaw at signed inputs."""
+    # At negative weights the lower row needs to rise and recede sooner.
+    # Narrow its ends as the jaw opens so they stay behind the lower lip.
+    x = accessor(primitives[15]['attributes']['POSITION'])[lower_teeth, 0]
+    edge = np.clip((abs(x) - .015) / .042, 0, 1)
+    edge = edge*edge*(3-2*edge)
+    teeth = deformations[15][0][3]
+    teeth[lower_teeth, 0] -= .18*x*edge
+    teeth[lower_teeth, 1] *= 1.34
+    teeth[lower_teeth, 2] += .012*edge
+# The generic least-squares fit uses the whole face and centerline landmarks.
+# A contacting grin, a closed muzzle drop and an open shout can have similar
+# centerline motion. Match the donor's authored oral poses at the native inputs.
+JAK_MOUTH_TARGETS = {
+    0: {10: .96, 2: .35}, 1: {1: 1.8}, 2: {17: .91}, 3: {18: .91},
+    4: {9: 3.1}, 5: {2: 4.1, 1: .8}, 6: {15: .64, 16: .64},
+    7: {10: .55, 1: .24}, 8: {3: .50, 1: .16},
+}
+DAXTER_MOUTH_TARGETS = {
+    1: {0: .99}, 2: {21: .24, 22: .24, 1: .63, 10: .12}, 5: {3: 1.04},
+    6: {10: .14, 1: .65}, 7: {10: .17, 3: .82}, 9: {11: 1.48},
+    10: {0: 1.50}, 17: {10: 1.0},
+}
+# The fitted cinematic motion already keeps the mouth centered when 11–15
+# blend in dialogue. Replacing them with isolated grin targets pulls it aside.
+DAXTER_MOUTH_INPUTS = {1: 10752, 2: 9024, 5: 8192, 6: 8192, 7: 8192, 10: 2432}
+
+
+def seat_daxter_teeth(raw, name, document, accessor, indices, vertices):
+    """Recess both rigid tooth rows enough to retain the closed-mouth inputs."""
+    from fr3_models import DRAW, model
+
+    primitives = document['meshes'][0]['primitives']
+    tooth = primitives[15]
+    assert document['materials'][tooth['material']]['name'].endswith('daxterteeth')
+    key = tooth['attributes']['POSITION']
+    original = accessor(key)
+    lower = np.linalg.norm(accessor(tooth['targets'][0]['POSITION']), axis=1) > 1e-7
+    seated = original.copy()
+    seated[:, 2] -= np.where(lower, .005, .010)
+    draws = sorted((draw for effect in model(raw, name)['effects'] for draw in effect['draws']),
+                   key=lambda draw: DRAW.unpack(draw)[3])
+    assert len(draws) == len(primitives)
+    values = DRAW.unpack(draws[15])
+    packed = indices[values[3]:values[3] + values[4]]
+    local = accessor(tooth['indices']).ravel()
+    offset = int(packed[0]) - int(local[0])
+    assert np.array_equal(packed, local + offset)
+    rows = np.unique(packed)
+    for row in rows:
+        index = int(row) - offset
+        start = int(row) * 64
+        imported = np.frombuffer(vertices[start:start + 12], dtype='<f4')
+        assert np.max(np.abs(imported - original[index] * 4096)) < .015
+        struct.pack_into('<3f', vertices, start, *(seated[index] * 4096))
+    return lambda index: seated if index == key else accessor(index), rows
+
+
+def fit_covered_teeth(position, lower, channel):
+    """Peak-pose offsets fitted against both signed inputs and the oblique jaw."""
+    # Rows are the upper and lower arcades. Values are mm at the positive
+    # endpoint: horizontal spread, elevation, depth, then changes to elevation
+    # and depth toward the sides and from the bottom to the top of the row.
+    profiles = {
+        1: ((18, 10, -17, -5, 12, 0, 0), (-6, -8, -40, 0, 12, -1, -18)),
+        9: ((0, 0, 0, 0, 0, 0, 0), (0, -8, 3, 0, 0, 0, 0)),
+        # At full opening, raise the upper row into the palate. Keep the lower
+        # row inside the narrowing jaw as it moves forward and down.
+        10: ((5, 36, -63, -2, 5, 0, 0), (-51, 17, 2, -1, 10, -5, -15)),
+    }
+    step = np.zeros_like(position)
+    horizontal = position[:, 0]/.110
+    vertical = (position[:, 1]-1.0315)/.010
+    for row, values in zip((~lower, lower), profiles[channel]):
+        spread, rise, depth, side_rise, side_depth, top_rise, top_depth = values
+        side = abs(horizontal[row])
+        step[row, 0] = horizontal[row]*spread
+        step[row, 1] = rise + side*side_rise + vertical[row]*top_rise
+        step[row, 2] = depth + side*side_depth + vertical[row]*top_depth
+    return step * .001
+
+
+def fit_authored_mouth(primitives, accessor, deformations, daxter):
+    """Match the lip silhouette while retaining fitted movement above the muzzle."""
+    from eye_alignment import move_facial_surface
+    targets = DAXTER_MOUTH_TARGETS if daxter else JAK_MOUTH_TARGETS
+    for part in ((4, 5, 6, 15) if daxter else (8, 9, 10)):
+        p = primitives[part]
+        position = accessor(p['attributes']['POSITION'])
+        normal = accessor(p['attributes']['NORMAL'])
+        triangles = accessor(p['indices']).reshape(-1, 3)
+        _, shading = np.unique(np.column_stack((position, normal)), axis=0, return_inverse=True)
+        y = position[:, 1]
+        influence = np.clip((1.114-y)/.030 if daxter else (2.422-y)/.025, 0, 1)[:, None]
+        dp, dn = deformations[part]
+        for channel, weights in targets.items():
+            blend = influence
+            if daxter and part != 15 and channel in (2, 5):
+                # Keep the shared fur/nose boundary seated as the lip opens.
+                lip = np.clip((1.082-y)/.018, 0, 1)[:, None]
+                blend = lip*lip*(3-2*lip)
+            for data, semantic in ((dp, 'POSITION'), (dn, 'NORMAL')):
+                authored = sum(gain * accessor(p['targets'][target][semantic])
+                               for target, gain in weights.items())
+                data[channel] += blend * (authored-data[channel])
+            if not daxter and channel == 5:
+                # Give the clenched mouth the native span at its observed peak.
+                weight = 2352.75 / 8192
+                x = position[:, 0]+weight*dp[channel, :, 0]
+                step = np.zeros_like(position)
+                step[:, 0] = .34*x*np.exp(-(x/.080)**4)*np.clip((2.390-y)/.040, 0, 1)/weight
+                if part == 9:
+                    step[:, 2] = .004/weight
+                move_facial_surface(position, normal, triangles, shading, dp[channel],
+                                    dn[channel], step*influence)
+            if daxter and part == 15 and channel == 9:
+                lower = np.linalg.norm(accessor(p['targets'][0]['POSITION']), axis=1) > 1e-7
+                step = fit_covered_teeth(position, lower, channel) * (8192/7872)
+                move_facial_surface(position, normal, triangles, shading, dp[channel], dn[channel], step)
+            if not daxter or channel not in DAXTER_MOUTH_INPUTS:
+                continue
+            weight = DAXTER_MOUTH_INPUTS[channel] / 8192
+            # Widen the opening below the nose, fading toward the outer cheek.
+            # Work in the peak pose so the same field follows the opened jaw.
+            x = position[:, 0] + weight * dp[channel, :, 0]
+            front = np.clip((position[:, 2]-.030)/.070, 0, 1)
+            muzzle = np.exp(-(x/.110)**4) * np.clip((1.075-y)/.027, 0, 1) * front
+            spread = {1: .38, 10: .38, 2: .08, 5: .0}.get(channel, .22)
+            step = np.zeros_like(position)
+            step[:, 0] = spread * x * muzzle / weight
+            if part == 15 and channel in (1, 5, 10):
+                lower = np.linalg.norm(accessor(p['targets'][0]['POSITION']), axis=1) > 1e-7
+                if channel == 5:
+                    # The lower crowns stay seated behind the moving lip in
+                    # this vowel. Carry them as one row and expose the upper edge.
+                    dp[channel, lower] = 0
+                    dn[channel, lower] = 0
+                    step[lower] = (0, .008, -.008)
+                    step[~lower, 1:] = (-.003, -.006)
+                else:
+                    step += fit_covered_teeth(position, lower, channel) / weight
+            move_facial_surface(position, normal, triangles, shading, dp[channel],
+                                dn[channel], step * blend)
+
+
+def mouth_profile(position, lower, channel, motion, right_grin):
+    """Correct the posed lip and tooth silhouettes in donor model coordinates."""
+    x, y, z = position.T
+    front = np.clip((z-.025)/.070, 0, 1) * np.clip((1.121-y)/.050, 0, 1)
+    step = np.zeros_like(position)
+    if channel == 16:
+        flank = np.clip((x-.018)/.080, 0, 1)
+        if lower is None:
+            step[:, 1:] += .65*(flank*front)[:, None]*right_grin[:, 1:]
+        else:
+            # The lowered side of the moving dental arcade stays under its lip.
+            step[:, 1] += flank*np.where(lower, -.013, .010)
+            step[:, 2] += flank*np.where(lower, -.021, .005)
+            step[lower, 0] -= .012*flank[lower]
+        flank_span = np.clip((x-.018)/.055, 0, 1)*np.clip((.170-x)/.045, 0, 1)
+        corner = np.clip((1.100-y)/.040, 0, 1)*np.clip((z-.025)/.070, 0, 1)
+        step[:, 0] += .030*flank_span*corner
+    elif channel == 17:
+        step[:, 0] += .085*x*front
+        if lower is not None:
+            # Translate the contact line up while preserving both outer edges.
+            posed_y = y + motion[:, 1]
+            contact = np.where(lower, (posed_y-.939)/.063, (1.059-posed_y)/.069)
+            step[:, 1] += .014*np.clip(contact, 0, 1)
+    return step
+
+
+def refine_daxter_mouth(primitives, accessor, deformations):
+    from eye_alignment import move_facial_surface
+
+    for part in (4, 5, 6, 15):
+        primitive = primitives[part]
+        position = accessor(primitive['attributes']['POSITION'])
+        normal = accessor(primitive['attributes']['NORMAL'])
+        triangles = accessor(primitive['indices']).reshape(-1, 3)
+        _, shading = np.unique(np.column_stack((position, normal)), axis=0, return_inverse=True)
+        opening = accessor(primitive['targets'][0]['POSITION'])
+        lower = np.linalg.norm(opening, axis=1) > 1e-7 if part == 15 else None
+        dp, dn = deformations[part]
+        # Keep the lateral jaw's existing lining contour independent of the
+        # side-grin channel, which blends differently in dialogue.
+        y = position[:, 1]
+        influence = np.clip((1.104 - y) / .020, 0, 1)[:, None]
+        donor_grin = (8192 / 5184) * accessor(primitive['targets'][25]['POSITION'])
+        right_grin = dp[11] + influence * (donor_grin - dp[11])
+        for channel in (16, 17):
+            step = mouth_profile(position, lower, channel, dp[channel], right_grin)
+            move_facial_surface(position, normal, triangles, shading, dp[channel], dn[channel], step)
 
 
 def main():

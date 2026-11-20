@@ -60,13 +60,39 @@ def main():
                 dn=np.einsum('ct,tnj->cnj',coefficient,np.array([ha(t['NORMAL']) for t in p['targets']]))
                 if np.max(np.abs(dp))>1e-7:deformations[pi]=(dp,dn)
             if name=='sidekick-lod0':
-                from native_jaw import apply_native_jaw
+                from native_jaw import apply_native_jaw, seat_daxter_teeth
                 jaw_report=apply_native_jaw(lp,la,hp,ha,deformations)
+                ha, tooth_rows=seat_daxter_teeth(raw,name,hd,ha,new_indices,vertices)
+                geometric_rows['position'].extend(tooth_rows.tolist())
                 (WORK/'face-candidates/native-jaw-report.json').write_text(json.dumps(jaw_report,indent=2)+'\n')
             high_eyes=eye_parts(hd);low_eyes={side:pi for pi,side in eye_parts(ld).items()}
             for pi,side in high_eyes.items():
                 # Native Jak 1 blink/expression channels also move the eye surface.
                 deformations[pi]=transfer(hp[pi],ha,[lp[low_eyes[side]]],la)
+                if name=='sidekick-lod0':
+                    # The compositor paints the closed orange lid onto this cap.
+                    # Keep the cap inside the fur rim as the squint closes.
+                    # Translate the whole cap to retain its curvature and UVs.
+                    squint = (23, 24)[side]
+                    positions, _ = deformations[pi]
+                    assert np.max(np.abs(positions[squint])) > .01
+                    positions[squint, :, 2] -= .018
+                    positions[26, :, 2] -= .012
+            if name == 'sidekick-lod0':
+                from eye_alignment import fit_daxter_lid_contours, fit_daxter_socket_fur
+                fit_daxter_socket_fur(hp, ha, high_eyes, deformations)
+                fit_daxter_lid_contours(hp, ha, deformations)
+            if name == 'eichar-lod0':
+                from eye_alignment import fit_jak_worried_brows
+                from native_jaw import fit_authored_mouth
+                fit_jak_worried_brows(lp, la, hp, ha, deformations)
+                fit_authored_mouth(hp, ha, deformations, daxter=False)
+                # The lower lid lifts in 13. The two upper lids lower independently
+                # in 11 and 12. Use the same gain on the socket and the eye cap.
+                for positions, normals in deformations.values():
+                    for channel, gain in ((11, 1.09), (12, 1.16), (13, 1.20)):
+                        positions[channel] *= gain
+                        normals[channel] *= gain
             samos_socket_rims=None
             if name=='sage-lod0':
                 from native_samos import anchor_native_samos_socket_rims

@@ -490,6 +490,182 @@
             "decodedRgbSha256": "86f5322483ee75f15109eb796f5bb2f7708e3b1b9e07c41f3bb23cab0adcb115",
             "method": "cwebp lossless exact z9"
           }
+        },
+        {
+          "subject": "Jak",
+          "view": "At the Sage’s doorway",
+          "path": "jak1/expressions/jak-doorway.webp",
+          "dimensions": [
+            1398,
+            733
+          ],
+          "sha256": "623e9c38fcc56d6f1d704adb4745fa30cfea95b5ea3f2a7e201b3aaff95072e6",
+          "bytes": 481234,
+          "framing": {
+            "sourceDimensions": [
+              1920,
+              1080
+            ],
+            "sharedCrop": [
+              770,
+              160,
+              1465,
+              830
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "87f680dcd33764d81fe22bd3b39793d9464cd5d3431fc8afd6679a209769e8c9",
+              "cinematic": "f0629f489741698b1615fdf20e7ce111ba43d5948a99b666ab99bdab50836a48"
+            },
+            "outputEncoding": {
+              "format": "WebP",
+              "lossless": true,
+              "exact": true
+            },
+            "outputLayout": {
+              "header": 63,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "nativeFrame": 72.0996,
+            "nativeEyeControlsMatched": true
+          }
+        },
+        {
+          "subject": "Jak",
+          "view": "Surprised in the Sage’s hut",
+          "path": "jak1/expressions/jak-surprised.webp",
+          "dimensions": [
+            948,
+            567
+          ],
+          "sha256": "f842556e9b53d28d7924b9a5f6701118718761a9b5b7f25504927a5c2337f084",
+          "bytes": 393472,
+          "framing": {
+            "sourceDimensions": [
+              1920,
+              1080
+            ],
+            "sharedCrop": [
+              458,
+              130,
+              928,
+              655
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "83816a3ae07dd2b1e48c1f1cfc6aafbf58ba851dac2607af1b74c486c5fa658e",
+              "cinematic": "418c133d84abd7fa04966c9955fb62c326afe9ea7e32593d4e3fdf0d4c58988e"
+            },
+            "outputEncoding": {
+              "format": "WebP",
+              "lossless": true,
+              "exact": true
+            },
+            "outputLayout": {
+              "header": 42,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "nativeFrame": 360.1464,
+            "nativeEyeControlsMatched": true
+          }
+        },
+        {
+          "subject": "Daxter",
+          "view": "Raised eye · Textured model render",
+          "path": "jak1/expressions/daxter-raised-eye.webp",
+          "dimensions": [
+            588,
+            305
+          ],
+          "sha256": "c323c2f3277311e9c45d0d4118cfd53f6c28d9e85838e4f3577d60e550e8f481",
+          "bytes": 91328,
+          "framing": {
+            "sourceDimensions": [
+              376,
+              376
+            ],
+            "sharedCrop": [
+              43,
+              14,
+              333,
+              293
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "d197021e7a0ca58dcbe312b9252b2e1a4efaadd4eaed8156fa9a6d8440ddae50",
+              "cinematic": "d969ccc6f71bff5682032e60ab36eb1471ad03b16e8d529196390ec82c1b14bd"
+            },
+            "outputEncoding": {
+              "format": "WebP",
+              "lossless": true,
+              "exact": true
+            },
+            "outputLayout": {
+              "header": 26,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "channel": 20,
+            "weight": 9728,
+            "yawDegrees": 35,
+            "evidence": "Textured model render"
+          }
+        },
+        {
+          "subject": "Daxter",
+          "view": "Smile · Textured model render",
+          "path": "jak1/expressions/daxter-smile.webp",
+          "dimensions": [
+            588,
+            305
+          ],
+          "sha256": "0dceb3e3bb00465160637237e772ffa42d8b4344afdea7702b9c09922ab67205",
+          "bytes": 95442,
+          "framing": {
+            "sourceDimensions": [
+              376,
+              376
+            ],
+            "sharedCrop": [
+              43,
+              14,
+              333,
+              293
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "5d05e028bb61990c9cecb57fefced24c742776bd56f01441a9f2831db06fdf14",
+              "cinematic": "95bc0d74ad760d7c77dd3bcec94155fbb342dfaf60e419655c852ffba2638447"
+            },
+            "outputEncoding": {
+              "format": "WebP",
+              "lossless": true,
+              "exact": true
+            },
+            "outputLayout": {
+              "header": 26,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "channel": 2,
+            "weight": 9024,
+            "yawDegrees": 0,
+            "evidence": "Textured model render"
+          }
         }
       ]
     }
