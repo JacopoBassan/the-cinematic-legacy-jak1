@@ -10,43 +10,43 @@ Uses the original gameplay clothing and accessory textures.
 
 **Front**
 
-![Jak, Front: Original left, Cinematic right](jak1/jak-front-467c555b9af9.webp)
+![Jak, Front: Original left, Cinematic right](jak1/jak-front-f96378faa9b6.jpg)
 
 **Side**
 
-![Jak, Side: Original left, Cinematic right](jak1/jak-side-1dec0a2f1ff8.webp)
+![Jak, Side: Original left, Cinematic right](jak1/jak-side-e44f6c3edc2b.jpg)
 
 **Back**
 
-![Jak, Back: Original left, Cinematic right](jak1/jak-back-ced1a3debb85.webp)
+![Jak, Back: Original left, Cinematic right](jak1/jak-back-939e1beafac1.jpg)
 
 **At the Sage’s doorway**
 
-![At the Sage’s doorway. Original left, Cinematic right.](jak1/expressions/jak-doorway.webp)
+![At the Sage’s doorway. Original left, Cinematic right.](jak1/expressions/jak-doorway.jpg)
 
 **Surprised in the Sage’s hut**
 
-![Surprised in the Sage’s hut. Original left, Cinematic right.](jak1/expressions/jak-surprised.webp)
+![Surprised in the Sage’s hut. Original left, Cinematic right.](jak1/expressions/jak-surprised.jpg)
 
 ## Daxter
 
 **Front**
 
-![Daxter, Front: Original left, Cinematic right](jak1/daxter-front.webp)
+![Daxter, Front: Original left, Cinematic right](jak1/daxter-front.jpg)
 
 **Raised eye · Textured model render**
 
-![Raised eye · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-raised-eye.webp)
+![Raised eye · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-raised-eye.jpg)
 
 **Smile · Textured model render**
 
-![Smile · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-smile.webp)
+![Smile · Textured model render. Original left, Cinematic right.](jak1/expressions/daxter-smile.jpg)
 
 ## Samos
 
 **Front**
 
-![Samos, Front: Original left, Cinematic right](jak1/samos-front-a4dcf5ae91fe.webp)
+![Samos, Front: Original left, Cinematic right](jak1/samos-front-081ab77c3664.jpg)
 
 ## Keira
 
@@ -54,20 +54,20 @@ Keeps her original feet and open sandals.
 
 **Front**
 
-![Keira, Front: Original left, Cinematic right](jak1/keira-front.webp)
+![Keira, Front: Original left, Cinematic right](jak1/keira-front.jpg)
 
 **Side**
 
-![Keira, Side: Original left, Cinematic right](jak1/keira-side-a.webp)
+![Keira, Side: Original left, Cinematic right](jak1/keira-side-a.jpg)
 
 **Back**
 
-![Keira, Back: Original left, Cinematic right](jak1/keira-back.webp)
+![Keira, Back: Original left, Cinematic right](jak1/keira-back.jpg)
 
 **Wipe**
 
-![Keira, Wipe: Original left, Cinematic right](jak1/keira-wipe.webp)
+![Keira, Wipe: Original left, Cinematic right](jak1/keira-wipe.jpg)
 
 **Weld**
 
-![Keira, Weld: Original left, Cinematic right](jak1/keira-weld.webp)
+![Keira, Weld: Original left, Cinematic right](jak1/keira-weld.jpg)

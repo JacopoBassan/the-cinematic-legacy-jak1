@@ -1,7 +1,6 @@
 {
   "schemaVersion": 1,
   "source": "OpenGOAL in-game screenshots",
-  "pixelEdits": false,
   "copiesPreserveSourceBytes": false,
   "games": {
     "jak1": {
@@ -10,12 +9,12 @@
         {
           "subject": "Jak",
           "view": "Front",
-          "path": "jak1/jak-front-467c555b9af9.webp",
+          "path": "jak1/jak-front-f96378faa9b6.jpg",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "467c555b9af9691b2bf6996f0a9ae97ad8df4faeace64ea88f0f0f7462a896c7",
+          "sha256": "f96378faa9b6642c1ba7399c0e7f27f76eedffb27e4b61f6191eff8e2eac3d0b",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -34,9 +33,12 @@
               "cinematic": "1b364b28580353e7f981b86527b63d5a729d10d429749dad28690b53ada7e46f"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 48,
@@ -45,31 +47,29 @@
             },
             "timeOfDay": "17:00"
           },
-          "losslessCompression": {
-            "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "ea8992c9c7ee3ed8237b8c6944b40cc350b15f094a99e0de6e780698f26d6bac",
-            "decodedRgbSha256": "ab55da324ec97f15df9a929b905084525f3411006525e075ffa8ee3199569772",
-            "method": "Pillow WebP lossless exact",
-            "rawPanelPixelsMatchExactly": true
-          },
-          "bytes": 748202,
+          "bytes": 437574,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
             "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
             "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
             "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/jak-front-467c555b9af9.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "467c555b9af9691b2bf6996f0a9ae97ad8df4faeace64ea88f0f0f7462a896c7"
           }
         },
         {
           "subject": "Jak",
           "view": "Side",
-          "path": "jak1/jak-side-1dec0a2f1ff8.webp",
+          "path": "jak1/jak-side-e44f6c3edc2b.jpg",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "1dec0a2f1ff89d6d24d3f04d3a3eef98d13b430b938c121743a101afc7f75c4d",
+          "sha256": "e44f6c3edc2be728db1d0c0fd878922a45f94c65ab01db703767872c4b3d3423",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -88,9 +88,12 @@
               "cinematic": "a7c9af70dfeccbc07317ff21a6012d5c9cde3ebf8cf7873eaa89bf453cfeb771"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 48,
@@ -99,31 +102,29 @@
             },
             "timeOfDay": "09:00"
           },
-          "losslessCompression": {
-            "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "218f38023fff114dbedf38145cd14ffe52050ee3b3d666b5db28c789f597e976",
-            "decodedRgbSha256": "32a8fe4fb025005f0df403e42f13f681c3807ed420d88b8c3a9d87c911254996",
-            "method": "Pillow WebP lossless exact",
-            "rawPanelPixelsMatchExactly": true
-          },
-          "bytes": 544676,
+          "bytes": 331666,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
             "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
             "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
             "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/jak-side-1dec0a2f1ff8.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "1dec0a2f1ff89d6d24d3f04d3a3eef98d13b430b938c121743a101afc7f75c4d"
           }
         },
         {
           "subject": "Jak",
           "view": "Back",
-          "path": "jak1/jak-back-ced1a3debb85.webp",
+          "path": "jak1/jak-back-939e1beafac1.jpg",
           "dimensions": [
             892,
             868
           ],
-          "sha256": "ced1a3debb85c901ff348808071ac88abfeecaf7583ec4b1e46dd1cdd88fdd94",
+          "sha256": "939e1beafac1be85157a6c9ef37f0dd75a42f12700523fd94523fd4a8e63b6b6",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -142,9 +143,12 @@
               "cinematic": "759dbfa095eba9d22afca70fbd77deaf2036ab6f63ea189fa4254874723c817b"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 48,
@@ -153,31 +157,29 @@
             },
             "timeOfDay": "09:00"
           },
-          "losslessCompression": {
-            "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "ac66c3296c39aa10ec458f8444ceb81814b0e03b782a3fc34bedeff31ad1f7c3",
-            "decodedRgbSha256": "98545a1eb91dc96c482ec0ace3e807c7060cbdbc3af9bdf48457b73c5e160541",
-            "method": "Pillow WebP lossless exact",
-            "rawPanelPixelsMatchExactly": true
-          },
-          "bytes": 630150,
+          "bytes": 372241,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
             "rigSourceSha256": "bdb068794ed9a8060779dc22fd01cd885120937f6574f1cb744ce71338cd7687",
             "jakPrototypeSha256": "cfa9c3da73d60872caf3caec745ff8e0c4814201638b7e649e35d3b20c47d82f",
             "cinematicGameFr3Sha256": "d397fdb1a8ca8c23104ac66d31b616312c50912ec56d736223351482cdaaa1aa"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/jak-back-ced1a3debb85.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "ced1a3debb85c901ff348808071ac88abfeecaf7583ec4b1e46dd1cdd88fdd94"
           }
         },
         {
           "subject": "Daxter",
           "view": "Front",
-          "path": "jak1/daxter-front.webp",
+          "path": "jak1/daxter-front.jpg",
           "dimensions": [
             452,
             348
           ],
-          "sha256": "88481a9f1fb41d514544e03b4125db7471d7b604a75adc672bd40714fb83d0a9",
+          "sha256": "a2bf71f5d41718151fa6cb9516e8b9b2bb2401b13d3bb80c962d8a5e4acb60db",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -197,8 +199,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -207,21 +211,22 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "878685ffaa219e1fa8c309edafc753352462f599c5f94b72d5db668f3e96ae7c",
-            "decodedRgbSha256": "21cdbbef199db109da753a7b34db0edfc0a433e7276f977d785f411bd4bc6473",
-            "method": "cwebp lossless exact z9"
+          "bytes": 80870,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/daxter-front.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "88481a9f1fb41d514544e03b4125db7471d7b604a75adc672bd40714fb83d0a9"
           }
         },
         {
           "subject": "Samos",
           "view": "Front",
-          "path": "jak1/samos-front-a4dcf5ae91fe.webp",
+          "path": "jak1/samos-front-081ab77c3664.jpg",
           "dimensions": [
             1532,
             1108
           ],
-          "sha256": "a4dcf5ae91fe8796d83c6bcbb80d9b099b203b63e34f227af49266bc0516a369",
+          "sha256": "081ab77c36644ff3d4c8b10b0617f381ad054861a12b17a4a2c4c2f0154cc06e",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -240,9 +245,12 @@
               "cinematic": "5395c5fe6713c8108535c20cd5b8d54c6ccb882f903f83ce9fec7edec7ee3a6a"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 48,
@@ -250,14 +258,7 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceType": "Composition of current raw PNG screenshot crops",
-            "sourceSha256": "f4fb5f90414c11325cdc3cb69f3c1c9ae8889e651f97b201360fe49f545e487a",
-            "decodedRgbSha256": "6fd99d6b92c16ad8a578251094f71a12dd0ba27d9d2ce9a25e792813713b0278",
-            "method": "Pillow WebP lossless exact",
-            "rawPanelPixelsMatchExactly": true
-          },
-          "bytes": 1610266,
+          "bytes": 711654,
           "captureBuild": {
             "openGoalVersion": "v0.3.9",
             "platform": "windows-x64",
@@ -269,17 +270,22 @@
             "originalVillage1Fr3Sha256": "e6d630ac99d19676a3337ab1904e8acfafd7f665faf4aa0de40979d7dedcb5e2",
             "samosFaceSourceSha256": "6948ce2b0f41912c98aa211e90477b2ec6a41ad61c5cd909b3f50a058b999a64",
             "samosTextureStageSha256": "5616e6d725dd9ed4f770dac1431fdd0ef280284e19a923d65dfbaee2793ac6e5"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/samos-front-a4dcf5ae91fe.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "a4dcf5ae91fe8796d83c6bcbb80d9b099b203b63e34f227af49266bc0516a369"
           }
         },
         {
           "subject": "Keira",
           "view": "Front",
-          "path": "jak1/keira-front.webp",
+          "path": "jak1/keira-front.jpg",
           "dimensions": [
             1132,
             1028
           ],
-          "sha256": "1295571dc498ba2413e4b2be79536d8f696f08a99b4c3d983f893d88b6f7ed21",
+          "sha256": "d08159f32a962e13c86ba80348741dfb0fb387677446ff4e7e800fbdd621471f",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -299,8 +305,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -309,21 +317,22 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "872eff13733684de201ad7e85b7d1547a388d6eb7f9707fb6b031ff146111274",
-            "decodedRgbSha256": "46c077cf7ae927bc05d87f9bf2c63c9533e38695033e8bb3608c67fad3111e97",
-            "method": "cwebp lossless exact z9"
+          "bytes": 410071,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/keira-front.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "1295571dc498ba2413e4b2be79536d8f696f08a99b4c3d983f893d88b6f7ed21"
           }
         },
         {
           "subject": "Keira",
           "view": "Side",
-          "path": "jak1/keira-side-a.webp",
+          "path": "jak1/keira-side-a.jpg",
           "dimensions": [
             1132,
             1028
           ],
-          "sha256": "1664b5a3362fec681eec67e59684292e42d98f9f04847ae9257c2bb57d28624c",
+          "sha256": "1d9d46fdd66b71f9fe45a3d7ddba69d9341d49b4d714cd9cf0914dd97fd6154d",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -343,8 +352,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -353,21 +364,22 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "8441d4a3a2a4538c2fc04762c2165a59a664db39bbd9d3084b04c28721f15edb",
-            "decodedRgbSha256": "e44711218e353b65d3000e7918b41c69f3c8b7ea3beb80027ca16304a50cd4cb",
-            "method": "cwebp lossless exact z9"
+          "bytes": 417971,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/keira-side-a.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "1664b5a3362fec681eec67e59684292e42d98f9f04847ae9257c2bb57d28624c"
           }
         },
         {
           "subject": "Keira",
           "view": "Back",
-          "path": "jak1/keira-back.webp",
+          "path": "jak1/keira-back.jpg",
           "dimensions": [
             1132,
             1028
           ],
-          "sha256": "4e142430bd838839d2f55393bff54a7bc5b27ab8fe1cbc76943eef6a775acf52",
+          "sha256": "577c5e81a2f75672f0db058d9f2b7f805614756d1cc68826ead61bffe3f064a3",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -387,8 +399,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -397,21 +411,22 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "0183aa6299b85fb3afeae5aa9546cde8ae66b5714bb13fe5961acfda9aa91827",
-            "decodedRgbSha256": "7b56638179d1daf514ff4d155194da91e838478160f96dc75f98c43c831a88de",
-            "method": "cwebp lossless exact z9"
+          "bytes": 432906,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/keira-back.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "4e142430bd838839d2f55393bff54a7bc5b27ab8fe1cbc76943eef6a775acf52"
           }
         },
         {
           "subject": "Keira",
           "view": "Wipe",
-          "path": "jak1/keira-wipe.webp",
+          "path": "jak1/keira-wipe.jpg",
           "dimensions": [
             1132,
             1028
           ],
-          "sha256": "0815ab6d35894fbb6a3539e321ddb0a64ee366ed918c97303abb873340e7de84",
+          "sha256": "9e6161bca2f4686865c1faa902f64c69eff481c29352aa1153be8598891b17cf",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -431,8 +446,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -441,21 +458,22 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "9009d736b526d04467cdad5f7d11caa10c0252575ac5dda191d9ad42f1e27d73",
-            "decodedRgbSha256": "541d082d4c49cb13d9b1b81f6e3a09ae3a63c05fe6e32b77292e4e4a6fb2e05f",
-            "method": "cwebp lossless exact z9"
+          "bytes": 408514,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/keira-wipe.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "0815ab6d35894fbb6a3539e321ddb0a64ee366ed918c97303abb873340e7de84"
           }
         },
         {
           "subject": "Keira",
           "view": "Weld",
-          "path": "jak1/keira-weld.webp",
+          "path": "jak1/keira-weld.jpg",
           "dimensions": [
             1132,
             1028
           ],
-          "sha256": "959983e87ca588914c2c7e88b61723cd717a3f8e8f64b58fa76460b0497cc961",
+          "sha256": "8f86621169ecb1b7a18bcebc4469a6933e1f7add218e080add7948ec1e33dce0",
           "framing": {
             "sourceDimensions": [
               1920,
@@ -475,8 +493,10 @@
             },
             "outputEncoding": {
               "format": "JPEG",
-              "quality": 100,
+              "quality": 94,
               "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
               "lossless": false
             },
             "outputLayout": {
@@ -485,22 +505,23 @@
               "margin": 0
             }
           },
-          "losslessCompression": {
-            "sourceSha256": "35a9f79cbb6992eb2f187db0f2cae95b6c7bb9dac9476023c8742be65ece9d47",
-            "decodedRgbSha256": "86f5322483ee75f15109eb796f5bb2f7708e3b1b9e07c41f3bb23cab0adcb115",
-            "method": "cwebp lossless exact z9"
+          "bytes": 402903,
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/keira-weld.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "959983e87ca588914c2c7e88b61723cd717a3f8e8f64b58fa76460b0497cc961"
           }
         },
         {
           "subject": "Jak",
           "view": "At the Sage’s doorway",
-          "path": "jak1/expressions/jak-doorway.webp",
+          "path": "jak1/expressions/jak-doorway.jpg",
           "dimensions": [
             1398,
             733
           ],
-          "sha256": "623e9c38fcc56d6f1d704adb4745fa30cfea95b5ea3f2a7e201b3aaff95072e6",
-          "bytes": 481234,
+          "sha256": "4c4ba8226d0ab1c7de88dbc759ad21060fd726f87ea0573dfc49a680898c6d8e",
+          "bytes": 285879,
           "framing": {
             "sourceDimensions": [
               1920,
@@ -519,9 +540,12 @@
               "cinematic": "f0629f489741698b1615fdf20e7ce111ba43d5948a99b666ab99bdab50836a48"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 63,
@@ -532,18 +556,23 @@
           "matchedCapture": {
             "nativeFrame": 72.0996,
             "nativeEyeControlsMatched": true
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/expressions/jak-doorway.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "623e9c38fcc56d6f1d704adb4745fa30cfea95b5ea3f2a7e201b3aaff95072e6"
           }
         },
         {
           "subject": "Jak",
           "view": "Surprised in the Sage’s hut",
-          "path": "jak1/expressions/jak-surprised.webp",
+          "path": "jak1/expressions/jak-surprised.jpg",
           "dimensions": [
             948,
             567
           ],
-          "sha256": "f842556e9b53d28d7924b9a5f6701118718761a9b5b7f25504927a5c2337f084",
-          "bytes": 393472,
+          "sha256": "795be52dca44a813896c0e7ee337dcece764e4ee0e2c7cd80b7266a6bee30547",
+          "bytes": 213201,
           "framing": {
             "sourceDimensions": [
               1920,
@@ -562,9 +591,12 @@
               "cinematic": "418c133d84abd7fa04966c9955fb62c326afe9ea7e32593d4e3fdf0d4c58988e"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 42,
@@ -575,18 +607,23 @@
           "matchedCapture": {
             "nativeFrame": 360.1464,
             "nativeEyeControlsMatched": true
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/expressions/jak-surprised.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "f842556e9b53d28d7924b9a5f6701118718761a9b5b7f25504927a5c2337f084"
           }
         },
         {
           "subject": "Daxter",
           "view": "Raised eye · Textured model render",
-          "path": "jak1/expressions/daxter-raised-eye.webp",
+          "path": "jak1/expressions/daxter-raised-eye.jpg",
           "dimensions": [
             588,
             305
           ],
-          "sha256": "c323c2f3277311e9c45d0d4118cfd53f6c28d9e85838e4f3577d60e550e8f481",
-          "bytes": 91328,
+          "sha256": "76d993b46622ee251b8be5cee73d3ff91e85dc0576d7bf61ad85cd6ede5346fb",
+          "bytes": 63136,
           "framing": {
             "sourceDimensions": [
               376,
@@ -605,9 +642,12 @@
               "cinematic": "d969ccc6f71bff5682032e60ab36eb1471ad03b16e8d529196390ec82c1b14bd"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 26,
@@ -620,18 +660,23 @@
             "weight": 9728,
             "yawDegrees": 35,
             "evidence": "Textured model render"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/expressions/daxter-raised-eye.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "c323c2f3277311e9c45d0d4118cfd53f6c28d9e85838e4f3577d60e550e8f481"
           }
         },
         {
           "subject": "Daxter",
           "view": "Smile · Textured model render",
-          "path": "jak1/expressions/daxter-smile.webp",
+          "path": "jak1/expressions/daxter-smile.jpg",
           "dimensions": [
             588,
             305
           ],
-          "sha256": "0dceb3e3bb00465160637237e772ffa42d8b4344afdea7702b9c09922ab67205",
-          "bytes": 95442,
+          "sha256": "fa3cd5726fbba3926d2a54bbbb5a87b4b0e5124d1d451690054617906cb7848c",
+          "bytes": 68081,
           "framing": {
             "sourceDimensions": [
               376,
@@ -650,9 +695,12 @@
               "cinematic": "95bc0d74ad760d7c77dd3bcec94155fbb342dfaf60e419655c852ffba2638447"
             },
             "outputEncoding": {
-              "format": "WebP",
-              "lossless": true,
-              "exact": true
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
             },
             "outputLayout": {
               "header": 26,
@@ -665,15 +713,15 @@
             "weight": 9024,
             "yawDegrees": 0,
             "evidence": "Textured model render"
+          },
+          "sourceWebP": {
+            "path": "docs/comparisons/jak1/expressions/daxter-smile.webp",
+            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
+            "sha256": "0dceb3e3bb00465160637237e772ffa42d8b4344afdea7702b9c09922ab67205"
           }
         }
       ]
     }
   },
-  "losslessCompression": {
-    "currentTotalBytes": 9136343,
-    "refreshedJakPanelsMatchRawCaptures": true,
-    "unchangedNpcFilesPreserved": true,
-    "inputProvenance": "Each image records its own raw-capture composition or prior encoded comparison input."
-  }
+  "sourcePixelEdits": false
 }
