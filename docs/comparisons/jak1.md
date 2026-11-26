@@ -22,11 +22,19 @@ Uses the original gameplay clothing and accessory textures.
 
 **At the Sage’s doorway**
 
-![At the Sage’s doorway. Original left, Cinematic right.](jak1/expressions/jak-doorway.jpg)
+![At the Sage’s doorway. Original left, Cinematic right.](jak1/expressions/jak-doorway.jpg?v=905baabd63de)
 
 **Surprised in the Sage’s hut**
 
-![Surprised in the Sage’s hut. Original left, Cinematic right.](jak1/expressions/jak-surprised.jpg)
+![Surprised in the Sage’s hut. Original left, Cinematic right.](jak1/expressions/jak-surprised.jpg?v=ca9dbe62aa20)
+
+**Misty Island opening**
+
+![Misty Island opening. Original left, Cinematic right.](jak1/expressions/jak-misty-island.jpg)
+
+**Geyser Rock power-cell celebration**
+
+![Geyser Rock power-cell celebration. Original left, Cinematic right.](jak1/expressions/jak-geyser-rock-cell.jpg)
 
 ## Daxter
 

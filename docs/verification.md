@@ -1,6 +1,10 @@
 # Jak and Daxter verification
 
-Release `0.3.6` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
+Release `0.3.8` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
+
+## Jak’s tongue and brows
+
+On Windows PAL, Jak’s mouth and brows were checked against the same frames in the original Misty Island opening and one Geyser Rock power-cell celebration. The small fold behind his upper teeth belongs to the roof of the mouth. [In-game comparisons](comparisons/jak1.md#jak)
 
 ## Refreshed HUD
 

@@ -520,8 +520,8 @@
             1398,
             733
           ],
-          "sha256": "4c4ba8226d0ab1c7de88dbc759ad21060fd726f87ea0573dfc49a680898c6d8e",
-          "bytes": 285879,
+          "sha256": "905baabd63de93b8e95d227a305a1e62967cd4c8250934fabd7f73e320cbb12b",
+          "bytes": 283379,
           "framing": {
             "sourceDimensions": [
               1920,
@@ -537,7 +537,7 @@
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
               "original": "87f680dcd33764d81fe22bd3b39793d9464cd5d3431fc8afd6679a209769e8c9",
-              "cinematic": "f0629f489741698b1615fdf20e7ce111ba43d5948a99b666ab99bdab50836a48"
+              "cinematic": "c5bdc3e77f08d7b25ddb91d584268abb2fa6c46a6820e65bdd85095a6c43fa8c"
             },
             "outputEncoding": {
               "format": "JPEG",
@@ -554,13 +554,15 @@
             }
           },
           "matchedCapture": {
+            "scene": "Sage’s hut",
             "nativeFrame": 72.0996,
-            "nativeEyeControlsMatched": true
+            "matchingNativeExpressionAndGaze": true
           },
-          "sourceWebP": {
-            "path": "docs/comparisons/jak1/expressions/jak-doorway.webp",
-            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
-            "sha256": "623e9c38fcc56d6f1d704adb4745fa30cfea95b5ea3f2a7e201b3aaff95072e6"
+          "captureBuild": {
+            "version": "0.3.8",
+            "platform": "windows-x64",
+            "openGoalVersion": "v0.3.9",
+            "cinematicGameFr3Sha256": "9a759864716137c8b52fb187474e98ba68ff7d901f4969506a86358f03e1b7c6"
           }
         },
         {
@@ -571,8 +573,8 @@
             948,
             567
           ],
-          "sha256": "795be52dca44a813896c0e7ee337dcece764e4ee0e2c7cd80b7266a6bee30547",
-          "bytes": 213201,
+          "sha256": "ca9dbe62aa20ab5659124c1bfe3b202fe39d8a2ee72d17a52ea3cdbe551f85e7",
+          "bytes": 213868,
           "framing": {
             "sourceDimensions": [
               1920,
@@ -588,7 +590,7 @@
             "sourcePixelEdits": false,
             "sourceCaptureSha256": {
               "original": "83816a3ae07dd2b1e48c1f1cfc6aafbf58ba851dac2607af1b74c486c5fa658e",
-              "cinematic": "418c133d84abd7fa04966c9955fb62c326afe9ea7e32593d4e3fdf0d4c58988e"
+              "cinematic": "ad006a6ab249ec0cd1103e20cfa8b4e6a77b5e50484b3dc9a57ce1844173f474"
             },
             "outputEncoding": {
               "format": "JPEG",
@@ -605,13 +607,15 @@
             }
           },
           "matchedCapture": {
+            "scene": "Sage’s hut",
             "nativeFrame": 360.1464,
-            "nativeEyeControlsMatched": true
+            "matchingNativeExpressionAndGaze": true
           },
-          "sourceWebP": {
-            "path": "docs/comparisons/jak1/expressions/jak-surprised.webp",
-            "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
-            "sha256": "f842556e9b53d28d7924b9a5f6701118718761a9b5b7f25504927a5c2337f084"
+          "captureBuild": {
+            "version": "0.3.8",
+            "platform": "windows-x64",
+            "openGoalVersion": "v0.3.9",
+            "cinematicGameFr3Sha256": "9a759864716137c8b52fb187474e98ba68ff7d901f4969506a86358f03e1b7c6"
           }
         },
         {
@@ -718,6 +722,114 @@
             "path": "docs/comparisons/jak1/expressions/daxter-smile.webp",
             "commit": "ab2499d9eba3c33bc4b92b4bc748de20f5e31064",
             "sha256": "0dceb3e3bb00465160637237e772ffa42d8b4344afdea7702b9c09922ab67205"
+          }
+        },
+        {
+          "subject": "Jak",
+          "view": "Misty Island opening",
+          "path": "jak1/expressions/jak-misty-island.jpg",
+          "dimensions": [
+            1006,
+            504
+          ],
+          "sha256": "bffe8f97c25bb0d189041a2b82c58ee78b5da5f8016f7a03cde360893b16d017",
+          "bytes": 143769,
+          "framing": {
+            "sourceDimensions": [
+              1920,
+              1080
+            ],
+            "sharedCrop": [
+              435,
+              263,
+              934,
+              729
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "49132a0581f046d20127f2617fc6acc0bd59c065e5170af5f56e507f17e63b6a",
+              "cinematic": "4a1b01e54981a09f6bee9b64373d997acd8589a00dc28870ee4572b8990fd80e"
+            },
+            "outputEncoding": {
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
+            },
+            "outputLayout": {
+              "header": 38,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "scene": "Misty Island opening",
+            "clip": "sidekick-human-intro-sequence-c",
+            "nativeFrame": 1100.3026,
+            "matchingNativeExpressionAndGaze": true
+          },
+          "captureBuild": {
+            "version": "0.3.8",
+            "platform": "windows-x64",
+            "openGoalVersion": "v0.3.9",
+            "cinematicGameFr3Sha256": "9a759864716137c8b52fb187474e98ba68ff7d901f4969506a86358f03e1b7c6"
+          }
+        },
+        {
+          "subject": "Jak",
+          "view": "Geyser Rock power-cell celebration",
+          "path": "jak1/expressions/jak-geyser-rock-cell.jpg",
+          "dimensions": [
+            1338,
+            663
+          ],
+          "sha256": "5a254549a39acd29dfdbf1004491d6f703ca2943f5f6bf3afdff97ca5f02c596",
+          "bytes": 393965,
+          "framing": {
+            "sourceDimensions": [
+              1920,
+              1080
+            ],
+            "sharedCrop": [
+              565,
+              110,
+              1230,
+              735
+            ],
+            "sourceImagesResized": false,
+            "sourcePixelEdits": false,
+            "sourceCaptureSha256": {
+              "original": "e2ff1a75a4d598a87f59ca6bb0fe73225c0090b7aac512dd5cdf67fe7774081c",
+              "cinematic": "af98dccb66c588ca6f697f39b9e474eac10043fd6bfc46e4e13e386e005af807"
+            },
+            "outputEncoding": {
+              "format": "JPEG",
+              "quality": 94,
+              "subsampling": 0,
+              "progressive": true,
+              "optimize": true,
+              "lossless": false
+            },
+            "outputLayout": {
+              "header": 38,
+              "gap": 8,
+              "margin": 0
+            }
+          },
+          "matchedCapture": {
+            "scene": "Geyser Rock",
+            "clip": "fuel-cell-victory-7",
+            "nativeFrame": 54.4042,
+            "pickupActor": 18827
+          },
+          "captureBuild": {
+            "version": "0.3.8",
+            "platform": "windows-x64",
+            "openGoalVersion": "v0.3.9",
+            "cinematicGameFr3Sha256": "9a759864716137c8b52fb187474e98ba68ff7d901f4969506a86358f03e1b7c6"
           }
         }
       ]
