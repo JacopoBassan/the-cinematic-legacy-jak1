@@ -40,12 +40,11 @@ def move_facial_surface(position, normal, triangles, shading, dp, dn, step):
 
 
 def fit_jak_worried_brows(lp, la, hp, ha, deformations):
-    """Preserve the native inner lift and outer drop across each donor eyebrow."""
+    """Preserve the native inner lift and outer drop of the raised brows."""
     native = lp[0]
     used = np.unique(la(native['indices']))
     rest = la(native['attributes']['POSITION'])[used]
     color = la(native['attributes']['COLOR_0'])[used]
-    motion = la(native['targets'][10]['POSITION'])[used]
     green = (color[:, 1] > 1.35 * color[:, 0]) & (color[:, 1] > 1.2 * color[:, 2])
     native_brow = green & (rest[:, 1] > 2.43) & (rest[:, 2] > .19)
 
@@ -57,24 +56,26 @@ def fit_jak_worried_brows(lp, la, hp, ha, deformations):
     # The same primitive also contains the tongue below the brows.
     brow = donor_used[(position[donor_used, 1] > 2.43) & (position[donor_used, 2] > .19)]
     dp, dn = deformations[10]
-    step = np.zeros_like(position)
-    for side in (-1, 1):
-        mask = native_brow & (rest[:, 0] * side > 0)
-        points, first = np.unique(rest[mask], axis=0, return_index=True)
-        x = abs(points[:, 0])
-        lift = motion[mask][first, 1]
-        inner, outer = lift[x.argmin()], lift[x.argmax()]
-        assert len(np.unique(x)) >= 8 and np.ptp(x) > .16
-        assert inner > .04 and outer < -.04
-        ids = brow[position[brow, 0] * side > 0]
-        along = abs(position[ids, 0])
-        assert len(ids) >= 45 and np.ptp(along) > .13
-        # The coarse brow's tips drive its tilt. Interpolate between them over
-        # the donor's width to preserve its smooth curve in both directions.
-        fraction = (along - along.min()) / np.ptp(along)
-        step[ids, 1] = inner + (outer - inner) * fraction - dp[10, ids, 1]
     _, shading = np.unique(np.column_stack((position, normal)), axis=0, return_inverse=True)
-    move_facial_surface(position, normal, triangles, shading, dp[10], dn[10], step)
+    # The smaller raise used on the boat has the same direction as the
+    # concerned raise. Its outer tip was nearly static in the cinematic fit.
+    for channel in (8, 10):
+        motion = la(native['targets'][channel]['POSITION'])[used]
+        step = np.zeros_like(position)
+        for side in (-1, 1):
+            mask = native_brow & (rest[:, 0] * side > 0)
+            points, first = np.unique(rest[mask], axis=0, return_index=True)
+            x = abs(points[:, 0])
+            lift = motion[mask][first, 1]
+            inner, outer = lift[x.argmin()], lift[x.argmax()]
+            assert len(np.unique(x)) >= 8 and np.ptp(x) > .16
+            assert inner > .01 and outer < -.02
+            ids = brow[position[brow, 0] * side > 0]
+            along = abs(position[ids, 0])
+            assert len(ids) >= 45 and np.ptp(along) > .13
+            fraction = (along - along.min()) / np.ptp(along)
+            step[ids, 1] = inner + (outer - inner) * fraction - dp[channel, ids, 1]
+        move_facial_surface(position, normal, triangles, shading, dp[channel], dn[channel], step)
 
 
 def fit_daxter_lid_contours(primitives, accessor, deformations):

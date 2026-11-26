@@ -343,6 +343,41 @@ def fit_authored_mouth(primitives, accessor, deformations, daxter):
                     step += fit_covered_teeth(position, lower, channel) / weight
             move_facial_surface(position, normal, triangles, shading, dp[channel],
                                 dn[channel], step * blend)
+    if not daxter:
+        fit_jak_tongue(primitives, accessor, deformations)
+
+
+def fit_jak_tongue(primitives, accessor, deformations):
+    """Seat the articulated tongue on the moving lower jaw in the open vowel."""
+    from eye_alignment import move_facial_surface
+    from native_face_rig import connected_vertex_component
+
+    face, teeth = primitives[8], primitives[9]
+    points = accessor(face['attributes']['POSITION'])
+    normals = accessor(face['attributes']['NORMAL'])
+    triangles = accessor(face['indices']).reshape(-1,3)
+    cavity = connected_vertex_component(triangles,413)
+    roof = connected_vertex_component(triangles,923)
+    assert len(cavity) == 196 and len(roof) == 68
+    # Shape 9 thrusts the tongue as well as opening the lips. The 3.1
+    # lip gain sent the central tip 80 mm forward at opening frame 1100.
+    # Identify the thrusting surface inside the cavity by its own motion.
+    authored = accessor(face['targets'][9]['POSITION'])
+    tongue = cavity[authored[cavity,2] > .008]
+    assert 577 in tongue and 636 in tongue and not np.intersect1d(tongue,roof).size
+    blend = np.clip((authored[tongue,2]-.008)/.014,0,1)
+    blend = blend*blend*(3-2*blend)
+    lower = np.linalg.norm(accessor(teeth['targets'][0]['POSITION']),axis=1)>1e-7
+    tooth_points = accessor(teeth['attributes']['POSITION'])
+    center = lower & (abs(tooth_points[:,0]) < .030)
+    assert center.any()
+    lower_travel = deformations[9][0][4,center].mean(0)
+    target = .95*authored[tongue]+.60*lower_travel
+    positions, normal_moves = deformations[8]
+    shift = np.zeros_like(points)
+    shift[tongue] = blend[:,None]*(target-positions[4,tongue])
+    _, shading = np.unique(np.column_stack((points,normals)),axis=0,return_inverse=True)
+    move_facial_surface(points,normals,triangles,shading,positions[4],normal_moves[4],shift)
 
 
 def mouth_profile(position, lower, channel, motion, right_grin):
