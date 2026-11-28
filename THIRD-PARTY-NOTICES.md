@@ -2,7 +2,7 @@
 
 Original mod code uses the ISC license in [MOD-LICENSE](MOD-LICENSE). Source derived from OpenGOAL retains its ISC notice in [builder/licenses/OpenGOAL-ISC.txt](builder/licenses/OpenGOAL-ISC.txt).
 
-Launcher downloads include Python, NumPy, SciPy, Pillow and Zstandard. Their license files are retained with the bundled distributions. The release packager copies the pinned distributions' recorded files, including their license notices.
+Launcher downloads include Python, NumPy, SciPy, Pillow, Zstandard and xxHash. Their license files are retained with the bundled distributions. The release packager copies the pinned distributions' recorded files, including their license notices.
 
 Windows, Apple Silicon and Linux x64 candidates use [Astral's python-build-standalone](https://github.com/astral-sh/python-build-standalone)
 CPython distributions. Their versions, source URLs and archive hashes are recorded

@@ -469,7 +469,9 @@ class Fixture {
                   'regionalProfiles': {'SCES-50361': {'nativeBaseInputs': {
                       'out/jak1/fr3/GAME.fr3': sha(native)}}}}
         module = Mock()
-        module.resolved_config.return_value = {'targetSerial': 'SCES-50361'}
+        module.resolved_config.return_value = {
+            'targetSerial': 'SCES-50361', 'targetProfile': config['regionalProfiles']['SCES-50361'],
+        }
         module.build.side_effect = RuntimeError('reached independently verified build boundary')
         with self.execute_environment(module), patch.object(adapter.games, 'compatibility', return_value=config):
             with self.assertRaisesRegex(RuntimeError, 'build boundary'):

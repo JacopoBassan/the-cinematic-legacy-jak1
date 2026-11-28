@@ -10,8 +10,9 @@ Use official OpenGOAL tooling **v0.3.9**. The launcher protocol was checked with
 | --- | --- |
 | EU | SCES-50361 |
 | USA | SCUS-97124, Black Label |
+| USA | SCUS-97124, Rev 1 / Greatest Hits |
 
-Setup checks the executable revision and consumed file hashes. A matching disc serial alone is insufficient.
+Setup distinguishes the two US editions by executable. For Rev 1 it checks the extraction against OpenGOAL’s retail fingerprint and compares the vanilla game archive with a fresh native build.
 Install vanilla Jak II in the same launcher first. This mod reads the cinematic donors from that local installation. The donor disc revision and files must also pass the compatibility checks.
 
 The installer includes Python and its dependencies. No terminal, Blender or separate Python installation is needed. Setup calculates required disk space before copying. Allow room for the installed mod and temporary conversion files.

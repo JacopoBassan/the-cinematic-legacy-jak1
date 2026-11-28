@@ -1,6 +1,6 @@
 {
   "game": "jak1",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "openGoalVersion": "v0.3.9",
   "platform": "windows-x64",
   "supportedSerials": [
@@ -128,6 +128,13 @@
       "territory": 0,
       "fullGame": false
     }
+  },
+  "greatestHits": {
+    "elfHash": 744661860962747854,
+    "fileCount": 338,
+    "contentsHash": 8538304367812415885,
+    "territory": 0,
+    "fullGame": true
   },
   "donorProfiles": {
     "SCES-51608": {

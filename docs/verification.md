@@ -1,6 +1,6 @@
 # Jak and Daxter verification
 
-Release `0.3.8` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
+Release `0.3.9` targets Windows x64, [Apple Silicon macOS](macos.md) and [experimental Linux x64](linux.md) with official OpenGOAL **v0.3.9**. The launcher protocol was checked with **v2.11.2**. Intel Macs are unsupported. Real Linux launcher import, model conversion and gameplay are not yet validated.
 
 ## Jak’s tongue and brows
 
@@ -9,6 +9,12 @@ On Windows PAL, Jak’s mouth and brows were checked against the same frames in 
 ## Refreshed HUD
 
 Refreshed HUD 1.0 texture preservation was verified with the supported PAL and USA discs on Windows using OpenGOAL v0.3.9. The same texture handling runs in the macOS and Linux installers.
+
+## US Greatest Hits
+
+The Rev 1 profile uses the executable hash, extracted file count and combined XXH64 fingerprint from OpenGOAL v0.3.9. The installer checks the extracted files and verifies the required files again during staging. It compares the vanilla GAME.CGO with a fresh build from the validated disc before converting the models. [OpenGOAL disc table](https://github.com/open-goal/jak-project/blob/v0.3.9/decompiler/extractor/extractor_util.cpp#L43-L52)
+
+On 2026-11-28, the Apple Silicon package completed both launcher phases with a US Black Label disc and a PAL Jak II donor. A disposable profile used the official Black Label fingerprint to exercise the new validation path. That install matched the standard install's GAME.CGO, all four character records, vertex and index buffers, and texture tables. Both paths preserved the original archives. Bytes outside the checked graphics data varied between standard installs as well. A full install with a retail Rev 1 disc is still pending.
 
 ## Source checks
 

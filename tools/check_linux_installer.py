@@ -38,10 +38,11 @@ exec(compile(sys.argv.pop(1), '<linux-installer-e2e>', 'exec'))
 """
 RUNTIME_CHECK = """
 import importlib.metadata as md, json, platform
-import numpy, scipy.spatial, PIL.Image, zstandard
+import numpy, scipy.spatial, PIL.Image, xxhash, zstandard
 expected = json.loads(sys.argv[1])
 assert sys.version_info[:3] == tuple(map(int, sys.argv[2].split('.')))
 assert all(md.version(name) == version for name, version in expected.items())
+assert xxhash.xxh64_intdigest(b'') == 17241709254077376921
 assert numpy.allclose(numpy.linalg.solve([[2., 0.], [0., 4.]], [6., 8.]), [3., 2.])
 distance, index = scipy.spatial.cKDTree([[0., 0.], [2., 2.]]).query([.1, .1])
 assert index == 0 and distance < .2

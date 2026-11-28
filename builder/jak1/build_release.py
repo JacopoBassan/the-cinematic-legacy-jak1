@@ -79,6 +79,46 @@ def serial_for(disc):
     return match[1]+'-'+match[2]+match[3]
 
 
+def retail_input_hashes(disc, executable, required, profile):
+    """Validate the local Rev 1 extraction with OpenGOAL v0.3.9's algorithm."""
+    from xxhash import xxh64, xxh64_intdigest
+
+    required = set(required)
+    hashes = {}
+    combined = count = 0
+    actual_elf = None
+    for path in disc.rglob('*'):
+        if path.is_symlink():
+            raise ValueError('The Greatest Hits extraction contains a symbolic link.')
+        if not path.is_file() or path.name == 'buildinfo.json':
+            continue
+        relative = path.relative_to(disc).as_posix()
+        archive_hash = xxh64()
+        selected = hashlib.sha256() if relative in required else None
+        with path.open('rb') as stream:
+            while block := stream.read(1024 * 1024):
+                archive_hash.update(block)
+                if selected is not None:
+                    selected.update(block)
+        if selected is not None:
+            hashes[relative] = selected.hexdigest()
+        value = archive_hash.intdigest()
+        if relative == executable:
+            actual_elf = value
+        combined ^= value
+        count += 1
+
+    if actual_elf != profile['elfHash']:
+        raise ValueError('Unexpected Greatest Hits executable. Rebuild vanilla Jak 1.')
+    # The pinned PC extractor XORs every file's XXH64 and hashes the little-endian result.
+    if count != profile['fileCount'] or xxh64_intdigest(struct.pack('<Q', combined)) != profile['contentsHash']:
+        raise ValueError('Greatest Hits extraction differs from the OpenGOAL content fingerprint. '
+                         'Re-extract the original Jak 1 disc with OpenGOAL v0.3.9.')
+    if hashes.keys() != required:
+        raise ValueError('Greatest Hits extraction is missing a required game archive.')
+    return hashes
+
+
 def resolved_config(data, config):
     result = dict(config)
     result['sourceRoot'] = str(Path(config.get('sourceData', data)).resolve())
@@ -101,12 +141,22 @@ def resolved_config(data, config):
             raise ValueError(f'Missing local {"Jak 1" if key == "target" else "Jak II cinematic donor"} extraction: {path}')
         if serial not in profiles:
             raise ValueError(f'Unsupported {key} disc revision: {serial}')
-        if disc_metadata is not None and disc_metadata.get('elf_hash') != profiles[serial].get('elfHash'):
-            raise ValueError(f'Unsupported {key} executable revision')
+        profile = profiles[serial]
         prefix, number = serial.split('-')
+        executable = f'{prefix}_{number[:3]}.{number[3:]}'
+        elf_hash = disc_metadata.get('elf_hash') if disc_metadata is not None else None
+        if key == 'target' and serial == 'SCUS-97124' and (greatest_hits := config.get('greatestHits')):
+            if disc_metadata is None and (path/executable).is_file():
+                from xxhash import xxh64_intdigest
+                elf_hash = xxh64_intdigest((path/executable).read_bytes())
+            if elf_hash == greatest_hits['elfHash']:
+                profile = greatest_hits
+        if (elf_hash is not None or disc_metadata is not None) and elf_hash != profile.get('elfHash'):
+            raise ValueError(f'Unsupported {key} executable revision')
         result[key+'Disc'] = str(path)
         result[key+'Serial'] = serial
-        result[key+'Executable'] = f'{prefix}_{number[:3]}.{number[3:]}'
+        result[key+'Executable'] = executable
+        result[key+'Profile'] = profile
     result['selectedSerial'] = result['targetSerial']
     return result
 
@@ -135,14 +185,21 @@ def preflight(data: Path, tools: Path, config: dict):
         if not (source/relative).is_dir() or tree_hash(source/relative) != expected:
             raise ValueError(f'Unsupported or modified source tree: {relative}')
     for role in ('target', 'donor'):
-        profiles = config['regionalProfiles' if role == 'target' else 'donorProfiles']
-        profile = profiles[config[role+'Serial']]
+        profile = config[role+'Profile']
         if type(profile.get('elfHash')) is not int:
             raise ValueError(f'Missing pinned {role} executable metadata')
         disc = Path(config[role+'Disc'])
-        for relative, expected in profile['inputs'].items():
-            if not (disc/relative).is_file() or sha(disc/relative) != expected:
-                raise ValueError(f'Unsupported or modified {role} disc input: {relative}')
+        if role == 'target' and 'contentsHash' in profile:
+            executable = config['targetExecutable']
+            required = [*config['nativeArchives'], executable]
+            config['targetProfile'] = {**profile, 'inputs': retail_input_hashes(
+                disc, executable, required, profile)}
+            if not (data/'out/jak1/iso/GAME.CGO').is_file():
+                raise ValueError('Build vanilla Greatest Hits Jak 1 with OpenGOAL v0.3.9 first.')
+        else:
+            for relative, expected in profile['inputs'].items():
+                if not (disc/relative).is_file() or sha(disc/relative) != expected:
+                    raise ValueError(f'Unsupported or modified {role} disc input: {relative}')
     if config.get('game') != 'jak1' or config['payloadPaths'] != PAYLOAD_PATHS:
         raise ValueError('Jak 1 payload definition differs from the constructor')
     return config
@@ -172,8 +229,11 @@ def stage_disc(source, destination, profile, serial):
     The official extractor otherwise silently defaults to Jak 1 black label,
     including when --game jak2 is supplied. Original inputs remain untouched.
     """
-    for relative in profile['inputs']:
-        link_or_copy(source/relative, destination/relative)
+    for relative, expected in profile['inputs'].items():
+        staged = destination/relative
+        link_or_copy(source/relative, staged)
+        if 'contentsHash' in profile and sha(staged) != expected:
+            raise ValueError(f'Greatest Hits input changed while staging: {relative}')
     (destination/'buildinfo.json').write_text(json.dumps([
         dict(serial=serial, elf_hash=profile['elfHash'])])+'\n')
     return destination
@@ -223,7 +283,7 @@ def extract(project, tools, disc, game, archives, levels, rip, log, env,
 
 
 def compile_command(tools, project, form, config):
-    profile = config['regionalProfiles'][config['targetSerial']]
+    profile = config['targetProfile']
     territory, full_game = profile['territory'], profile['fullGame']
     if type(territory) is not int or territory not in (0, 1) or type(full_game) is not bool:
         raise ValueError('Unsupported Jak 1 compiler edition flags')
@@ -312,9 +372,9 @@ def build(data: Path, tools: Path, work: Path, output: Path, config: dict):
     # The input directory is selected, never a cloned runnable installation.
     iso = project/'iso_data/jak1'
     disc = stage_disc(Path(config['targetDisc']), iso,
-        config['regionalProfiles'][config['targetSerial']], config['targetSerial'])
+        config['targetProfile'], config['targetSerial'])
     donor = stage_disc(Path(config['donorDisc']), work/'donor-input',
-        config['donorProfiles'][config['donorSerial']], config['donorSerial'])
+        config['donorProfile'], config['donorSerial'])
     env = dict(os.environ, CINEMATIC_BUILD_WORK=str(work),
                CINEMATIC_JAK1_WORK=str(work), CINEMATIC_JAK1_DATA=str(project))
     # Load the original global texture database before selecting replacements.
@@ -334,6 +394,13 @@ def build(data: Path, tools: Path, work: Path, output: Path, config: dict):
     run(compile_command(tools, project, '(make "$OUT/iso/GAME.CGO")', config),
         work/'02-native-code.log', env)
     shutil.copy2(project/'out/jak1/iso/GAME.CGO', work/'GAME-original.CGO')
+    if 'contentsHash' in config['targetProfile']:
+        # This edition has no precomputed native GAME.CGO digest. Derive it
+        # from the validated disc with the same pinned compiler and flags.
+        vanilla = data/'out/jak1/iso/GAME.CGO'
+        if not vanilla.is_file() or sha(vanilla) != sha(work/'GAME-original.CGO'):
+            raise ValueError('Rebuild the original Jak 1 Greatest Hits with native '
+                             'OpenGOAL v0.3.9 before installing this mod.')
     selective = work/'native-rigs'
     for relative in TARGET_ARCHIVES[:-1]+[config['targetExecutable'], 'buildinfo.json']:
         link_or_copy(disc/relative, selective/relative)

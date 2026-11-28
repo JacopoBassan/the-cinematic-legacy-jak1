@@ -205,7 +205,8 @@ def package(output, staging, compiler=None, *, game=games.GAME, runtime_from=Non
         shutil.copy2(games.relative_file(ROOT,source),staging/target)
     subprocess.run([str((staging/'.builder/python/python.exe').resolve()),'-I','-B','-c',
         'import os; os.environ.setdefault("CINEMATIC_BUILD_WORK",os.getcwd()); '
-        'import numpy,scipy.spatial,PIL.Image,zstandard,game_config,launcher_install; '
+        'import numpy,scipy.spatial,PIL.Image,xxhash,zstandard,game_config,launcher_install; '
+        'assert xxhash.xxh64_intdigest(b"")==17241709254077376921; '
         'assert numpy.allclose(numpy.linalg.solve([[2.,0.],[0.,4.]],[6.,8.]),[3.,2.]); '
         'distance,index=scipy.spatial.cKDTree([[0.,0.],[2.,2.]]).query([.1,.1]); '
         'assert index==0 and distance<.2; '
@@ -217,7 +218,7 @@ def package(output, staging, compiler=None, *, game=games.GAME, runtime_from=Non
         'expected=json.loads(sys.argv[2]); assert all(md.version(k)==v for k,v in expected.items()); '
         'config=game_config.load(); assert config["game"]==sys.argv[1]; '
         'module=game_config.builder(config); assert callable(module.preflight) and callable(module.build); '
-        'print("Isolated NumPy/SciPy/Pillow/Zstandard operations and selected game builder pass")',game,json.dumps(requirements),PYTHON_RUNTIME['version']],check=True)
+        'print("Isolated NumPy/SciPy/Pillow/xxHash/Zstandard operations and selected game builder pass")',game,json.dumps(requirements),PYTHON_RUNTIME['version']],check=True)
     records = {p.relative_to(staging).as_posix():sha(p) for p in sorted(staging.rglob('*'))
                if p.is_file() and '__pycache__' not in p.parts}
     for name in records:safe_name(name)

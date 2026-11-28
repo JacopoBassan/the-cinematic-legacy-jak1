@@ -81,6 +81,37 @@ class BuilderTests(unittest.TestCase):
             np.testing.assert_array_equal(uv[side][:, 1],
                 (.5-report['sharedUVScale'][1]*normal[:, 1]).astype('<f4'))
 
+    def test_greatest_hits_revision_validates_the_local_extraction(self):
+        # This fixture covers reused serials, forged metadata and changed or
+        # missing files. Those failures need the actual preflight identity check.
+        import xxhash
+
+        with tempfile.TemporaryDirectory() as folder:
+            disc = Path(folder)
+            (disc/'CGO').mkdir()
+            executable = disc/'SCUS_971.24'
+            executable.write_bytes(b'original full game executable')
+            (disc/'CGO/GAME.CGO').write_bytes(b'original archive')
+            (disc/'SYSTEM.CNF').write_text('BOOT2 = cdrom0:\\SCUS_971.24;1\n')
+            hashes = [xxhash.xxh64_intdigest(path.read_bytes()) for path in
+                      (executable, disc/'CGO/GAME.CGO', disc/'SYSTEM.CNF')]
+            elf_hash, game_hash, boot_hash = hashes
+            retail = dict(elfHash=elf_hash, fileCount=3, contentsHash=xxhash.xxh64_intdigest(
+                struct.pack('<Q', elf_hash ^ game_hash ^ boot_hash)), territory=0, fullGame=True)
+            metadata = disc/'buildinfo.json'
+            metadata.write_text(json.dumps([dict(serial='SCUS-97124', elf_hash=elf_hash)]))
+            required = ['CGO/GAME.CGO', executable.name]
+            verified = builder.retail_input_hashes(disc, executable.name, required, retail)
+            self.assertEqual(verified['CGO/GAME.CGO'], builder.sha(disc/'CGO/GAME.CGO'))
+            with self.assertRaisesRegex(ValueError, 'executable'):
+                builder.retail_input_hashes(disc, executable.name, required, {**retail, 'elfHash': 0})
+            (disc/'CGO/GAME.CGO').write_bytes(b'different archive')
+            with self.assertRaisesRegex(ValueError, 'OpenGOAL content fingerprint'):
+                builder.retail_input_hashes(disc, executable.name, required, retail)
+            (disc/'CGO/GAME.CGO').unlink()
+            with self.assertRaisesRegex(ValueError, 'OpenGOAL content fingerprint'):
+                builder.retail_input_hashes(disc, executable.name, required, retail)
+
     def test_missing_extraction_metadata_is_normalized_without_modifying_input(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -106,8 +137,8 @@ class BuilderTests(unittest.TestCase):
             original = b';; upstream project\r\n(if *jak1-full-game* 1 0)\r\n'
             gp.write_bytes(original)
             for territory, full in [(1, True), (0, False)]:
-                config = dict(targetSerial='selected', regionalProfiles={
-                    'selected': dict(territory=territory, fullGame=full)})
+                config = dict(targetSerial='selected', targetProfile=
+                              dict(territory=territory, fullGame=full))
                 command = builder.compile_command(root, project, '(make "target")', config)
                 flag = '#t' if full else '#f'
                 self.assertIn(f'(set! *default-territory* {territory})', command[-1])

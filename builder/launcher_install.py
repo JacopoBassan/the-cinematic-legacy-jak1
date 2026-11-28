@@ -244,11 +244,14 @@ def execute(mod, iso, phase, game_config=None):
     checked = module.preflight(data, tools, config) if phase == 'decompile' else None
     if selected['game'] == 'jak1' and config.get('platform') in ('macos-arm64', 'linux-x64'):
         checked = checked or module.resolved_config(data, config)
-        native = config['regionalProfiles'][checked['targetSerial']].get('nativeBaseInputs', {})
-        if not native or any(not (data/name).is_file() or builder.sha(data/name) != digest
-                             for name, digest in native.items()):
-            raise ValueError('Rebuild the original Jak 1 with native OpenGOAL tooling '
-                             f"{config['openGoalVersion']} before installing this mod.")
+        # The construction step compares Greatest Hits with a fresh native
+        # archive from its validated disc. Other editions use the pinned hash.
+        if 'contentsHash' not in checked['targetProfile']:
+            native = checked['targetProfile'].get('nativeBaseInputs', {})
+            if not native or any(not (data/name).is_file() or builder.sha(data/name) != digest
+                                 for name, digest in native.items()):
+                raise ValueError('Rebuild the original Jak 1 with native OpenGOAL tooling '
+                                 f"{config['openGoalVersion']} before installing this mod.")
     parent = scratch_parent(mod, config)
     free_space_check(mod, data, parent, selected, config.get('minimumFreeBytes', 1024**3), source=source)
     if phase == 'decompile':
